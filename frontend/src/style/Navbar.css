@@ -1,0 +1,14 @@
+#stack1>*>*:hover{
+    color: #ED7745;
+}
+
+#stack3>* {
+    transition: color .2s ease-in-out;
+    height: 100%;
+}
+
+#stack3>*:hover {
+    color: #ED7745;
+    cursor: default;
+    border-bottom: #ED7745 1px solid;
+}
