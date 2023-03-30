@@ -1,9 +1,11 @@
-import { Button, Grid, HStack, Image, Input, InputGroup, InputRightElement, StackDivider, Text, VStack } from "@chakra-ui/react"
+import { Box, Button, Grid, HStack, Image, Input, InputGroup, InputRightElement, StackDivider, StackItem, Text, VStack } from "@chakra-ui/react"
 import { Link } from "react-router-dom"
 import { QuestionIcon, Search2Icon } from "@chakra-ui/icons"
 import "../style/Navbar.css";
+import { useSelector } from "react-redux";
 
 export const Navbar = () => {
+    const isAuth = false;
     const handleClick = () => {
 
     }
@@ -44,7 +46,23 @@ export const Navbar = () => {
                 </InputGroup>
                 <Grid gridTemplateColumns={"1fr 1fr 1fr 1fr"} alignItems="center" gap="5%">
                     <Link to="/"><Image w={"25px"} src="https://i.ibb.co/PQw8SY0/delivery-truck.png" alt="https://i.ibb.co/PQw8SY0/delivery-truck.png" /></Link>
-                    <Image w={"20px"} src="https://i.ibb.co/pLkHBMW/account.png" alt="https://i.ibb.co/pLkHBMW/account.png" />
+                    <Box id="userBox">
+                        <Image w={"20px"} src="https://i.ibb.co/pLkHBMW/account.png" alt="https://i.ibb.co/pLkHBMW/account.png" />
+                        {
+                            isAuth ?
+                                <VStack spacing={0}>
+                                    <Text>Profile</Text>
+                                    <Text>Orders</Text>
+                                    <Text>Vouchers</Text>
+                                    <Text>Logout</Text>
+                                </VStack>
+                                :
+                                <VStack spacing={0}>
+                                    <Text>Log In</Text>
+                                    <Text>Sign Up</Text>
+                                </VStack>
+                        }
+                    </Box>
                     <Link to="/"><Image w={"20px"} src="https://i.ibb.co/KVtstJ7/heart.png" alt="https://i.ibb.co/KVtstJ7/heart.png" /></Link>
                     <Link to="/"><Image w={"20px"} src="https://i.ibb.co/ySc7vxw/shopping-cart.png" alt="https://i.ibb.co/ySc7vxw/shopping-cart.png" /></Link>
                 </Grid>

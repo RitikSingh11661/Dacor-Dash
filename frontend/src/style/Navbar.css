@@ -11,6 +11,7 @@
     align-items: flex-start;
     border: 0.1px solid #e2e8f0;
     gap: 4%;
+    border-radius: 0px 0px 20px 20px;
 }
 
 #catNav {
@@ -50,12 +51,41 @@
 
 #stack3>* {
     transition: color .2s ease-in-out;
-    /* height: 100%; */
 }
 
 #stack3>*:hover {
     color: #ED7745;
     cursor: default;
-    text-decoration: underline #ED7745 1px solid;
-    text-underline-offset: 98%;
+    text-decoration: underline #ED7745 2px solid;
+    text-underline-offset: 80%;
+}
+
+/* User box */
+
+#userBox {
+    position: relative;
+}
+
+#userBox>div {
+    border: 0.1px solid #e2e8f0;
+    display: none;
+    position: absolute;
+    z-index: 2;
+    background-color: white;
+}
+
+#userBox>div>* {
+    transition: color .2s ease-in-out;
+    border-bottom: 0.1px solid #e2e8f0;
+    padding: 10px 20px 10px 20px;
+    width: 100px;
+}
+
+#userBox>div>*:hover {
+    color: #ED7745;
+    cursor: pointer;
+}
+
+#userBox:hover>div {
+    display: flex;
 }
