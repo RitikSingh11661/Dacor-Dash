@@ -4,9 +4,10 @@ const schema = mongoose.Schema({
     name: String,
     email: String,
     password: String,
-    wallet: Number
+    contact: String,
+    image: String
 })
 
-const userModel = mongoose.model("user", schema);
+const adminModel = mongoose.model("admin", schema);
 
-module.exports = { userModel };
+module.exports = { adminModel };
