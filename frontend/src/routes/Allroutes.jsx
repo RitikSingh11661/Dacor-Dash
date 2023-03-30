@@ -3,6 +3,7 @@ import { Admin } from "../pages/Admin";
 import { Cart } from "../pages/Cart";
 import { Homepage } from "../pages/Homepage";
 import { Login } from "../pages/Login";
+import { NotFound } from "../pages/NoteFound";
 import { Orders } from "../pages/Orders";
 import { Products } from "../pages/Products";
 import { Signup } from "../pages/Signup";
@@ -21,6 +22,7 @@ export const Allroutes = () => {
             <Route path="/orders" element={<Orders />} />
             <Route path="/product/:id" element={<SingleProduct />} />
             <Route path="/wishlist" element={<Wishlist />} />
+            <Route path="*" element={<NotFound />} />
         </Routes>
     )
 }
