@@ -1,5 +1,5 @@
 import { Box, Grid, GridItem, Image, Text, VStack } from '@chakra-ui/react'
-import { Navigation, Pagination, Scrollbar } from "swiper";
+import { Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import React from 'react'
 import { SubNavbar } from '../components/SubNavbar'
