@@ -9,14 +9,14 @@ export const Footer = () => {
     return (
         <Box>
             <VStack textAlign={"left"} divider={<StackDivider borderColor='gray.200' />}>
-                <VStack p={"50px 20%"} pb={"25px"}>
+                <VStack p={"50px 15%"} pb={"25px"}>
                     <Text width={"auto"} letterSpacing={"4px"}>SIGN UP AND GET A CHANCE TO WIN THE GIVEAWAY OF THE WEEK.</Text>
                     <Grid gap={"2%"} gridTemplateColumns={"3fr 1fr"} justify={"center"}>
                         <Input type={"text"} placeholder={"Your Email ID"} />
                         <Input bg={"#ED7745"} color={"white"} type={"submit"} value={"SUBSCRIBE"} />
                     </Grid>
                 </VStack>
-                <VStack align={"start"} id="listStack" padding={"40px 20%"} fontSize={"14px"}>
+                <VStack align={"start"} id="listStack" padding={"40px 15%"} fontSize={"14px"}>
                     <Grid templateColumns={"1.5fr 2fr 1fr 1fr"}>
                         <VStack align={'flex-start'} divider={<StackDivider w={"50px"} borderColor='#ED7745' />}>
                             <Text fontWeight={"medium"}>The Company:</Text>
@@ -161,7 +161,7 @@ export const Footer = () => {
                     </Grid>
                 </VStack>
                 <VStack bg={"#2f4858"} color="white" id="stack3Footer">
-                    <VStack spacing={"20px"} fontSize={"14px"} padding={"50px 20%"}>
+                    <VStack spacing={"20px"} fontSize={"14px"} padding={"50px 15%"}>
                         <Grid templateColumns={"1fr 3fr"}>
                             <GridItem>Popular Furniture Categories:</GridItem>
                             <GridItem>
