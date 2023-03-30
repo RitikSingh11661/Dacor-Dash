@@ -1,0 +1,71 @@
+.swiper-button-next,
+.swiper-button-prev {
+    color: black;
+    background-color: rgb(255, 255, 255, .7);
+    width: 40px;
+}
+
+.swiper-button-next {
+    justify-content: start;
+    padding-left: 5px;
+    right: 0;
+}
+
+.swiper-button-prev {
+    justify-content: end;
+    padding-right: 5px;
+    left: 0;
+}
+
+#homepage>div {
+    margin-bottom: 30px;
+}
+
+#homepage>div>p {
+    margin-bottom: 70px;
+}
+
+#gridDiv {
+    background-color: #f9fafa;
+}
+
+#gridDiv>div:nth-child(2)>*,
+#gridDiv>div:nth-child(3)>* {
+    width: 70px;
+    white-space: nowrap;
+}
+
+#gridDiv>div:nth-child(2)>*>*,
+#gridDiv>div:nth-child(3)>*>* {
+    margin-bottom: 10px;
+}
+
+#gridDiv>div:nth-child(2) svg,
+#gridDiv>div:nth-child(3) svg,
+#gridDiv>div:nth-child(2)>*,
+#gridDiv>div:nth-child(3)>* {
+    transition: all .2s ease-in-out;
+}
+
+#gridDiv>div:nth-child(2)>*:hover,
+#gridDiv>div:nth-child(3)>*:hover {
+    color: #ED7745;
+}
+
+#gridDiv>div:nth-child(2)>*:hover svg,
+#gridDiv>div:nth-child(3)>*:hover svg {
+    fill: #ED7745;
+}
+
+#scalingSwiper img {
+    transition: all .2s ease-in-out;
+}
+
+#scalingSwiper img:hover {
+    transform: scale(1.1);
+}
+
+#reviewSwiper>div>div {
+    height: 100%;
+    padding: 3%;
+}

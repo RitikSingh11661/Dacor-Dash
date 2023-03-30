@@ -1,8 +1,8 @@
-import { Box, Button, Grid, HStack, Image, Input, InputGroup, InputRightElement, StackDivider, StackItem, Text, VStack } from "@chakra-ui/react"
+import { Box, Button, Grid, HStack, Image, Input, InputGroup, InputRightElement, StackDivider, Text, VStack } from "@chakra-ui/react"
 import { Link } from "react-router-dom"
 import { QuestionIcon, Search2Icon } from "@chakra-ui/icons"
 import "../style/Navbar.css";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 
 export const Navbar = () => {
     const isAuth = false;
