@@ -1,10 +1,12 @@
 import { Route, Routes } from "react-router-dom";
+import Address from "../pages/Address/Address";
 import { Admin } from "../pages/Admin";
 import { Cart } from "../pages/Cart";
 import { Homepage } from "../pages/Homepage";
 import { Login } from "../pages/Login";
 import { NotFound } from "../pages/NoteFound";
 import { Orders } from "../pages/Orders";
+import Payment from "../pages/Payment/Payment";
 import { Products } from "../pages/Products";
 import { Signup } from "../pages/Signup";
 import { SingleProduct } from "../pages/SingleProduct";
@@ -22,6 +24,8 @@ export const Allroutes = () => {
             <Route path="/orders" element={<Orders />} />
             <Route path="/product/:id" element={<SingleProduct />} />
             <Route path="/wishlist" element={<Wishlist />} />
+            <Route path="/address" element={<Address />} />
+            <Route path="/payment" element={<Payment/>} />
             <Route path="*" element={<NotFound />} />
         </Routes>
     )

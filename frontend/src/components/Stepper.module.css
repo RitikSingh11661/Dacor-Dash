@@ -1,0 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap");
+
+.main {
+  border: 0px solid red;
+  width: 50%;
+  display: flex;
+  justify-content: space-around;
+  margin-left: 350px;
+  font-size: 35px;
+  /* font-weight: bold; */
+  color: #ed7745;
+  font-family: 'EB Garamond', serif;
+ 
+
+}
+.main div{
+ text-decoration: underline;
+}
+ 

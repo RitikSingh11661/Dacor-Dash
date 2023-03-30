@@ -1,14 +1,91 @@
-#stack1>*>*:hover{
+#stack1>*>*:hover {
     color: #ED7745;
+}
+
+/* category navbar menu */
+
+#catNav>div {
+    background-color: white;
+    position: absolute;
+    padding: 2%;
+    align-items: flex-start;
+    border: 0.1px solid #e2e8f0;
+    gap: 4%;
+    border-radius: 0px 0px 20px 20px;
+}
+
+#catNav {
+    width: 100%;
+    padding: 0 15%;
+    position: relative;
+    align-items: flex-start;
+}
+
+#catNav>div>div>p {
+    font-weight: 500;
+    margin-bottom: 10px;
+    white-space: nowrap;
+}
+
+#catNav>div>div:hover>p {
+    text-decoration: underline #ED7745;
+    text-underline-offset: 10px;
+}
+
+#catNav>div>div>p:hover,
+#catNav>div>div>ul>*:hover {
+    color: #ED7745;
+}
+
+#catNav>div>div>*:hover {
+    cursor: pointer;
+}
+
+/* category navbar main */
+
+#catNavMain {
+    background-color: white;
+    border-top: 0.1px solid #e2e8f0;
+    border-bottom: 0.1px solid #e2e8f0;
 }
 
 #stack3>* {
     transition: color .2s ease-in-out;
-    height: 100%;
 }
 
 #stack3>*:hover {
     color: #ED7745;
     cursor: default;
-    border-bottom: #ED7745 1px solid;
+    text-decoration: underline #ED7745 2px solid;
+    text-underline-offset: 80%;
+}
+
+/* User box */
+
+#userBox {
+    position: relative;
+}
+
+#userBox>div {
+    border: 0.1px solid #e2e8f0;
+    display: none;
+    position: absolute;
+    z-index: 2;
+    background-color: white;
+}
+
+#userBox>div>* {
+    transition: color .2s ease-in-out;
+    border-bottom: 0.1px solid #e2e8f0;
+    padding: 10px 20px 10px 20px;
+    width: 100px;
+}
+
+#userBox>div>*:hover {
+    color: #ED7745;
+    cursor: pointer;
+}
+
+#userBox:hover>div {
+    display: flex;
 }
