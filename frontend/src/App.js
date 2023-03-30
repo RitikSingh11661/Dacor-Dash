@@ -1,5 +1,3 @@
-import './App.css';
-import Filter_Sort from './components/Filter_Sort';
 import { Footer } from './components/Footer';
 import { Navbar } from './components/Navbar';
 import ProductCard from './components/ProductCard';
@@ -11,9 +9,9 @@ function App() {
     <div className="App">
       <Navbar/>
       <Allroutes/>
-      <Footer/>
+      <Footer />
+      
     </div>
   );
 }
-
 export default App;
