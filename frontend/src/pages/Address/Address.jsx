@@ -27,6 +27,7 @@ import {
 } from "@chakra-ui/react";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import Stepper from "../../components/Stepper";
 // import Swal from "sweetalert2";
 // import CartMap from "../../Components/CartMap/Cartmap";
 import styles from "./Address.module.css";
@@ -131,6 +132,7 @@ const Address = () => {
 
   return (
     <div>
+      <Stepper />
       <Divider />
 
       <div
@@ -390,7 +392,7 @@ const Address = () => {
             <h3
               style={{
                 border: "0px solid red",
-                width: "100%",
+                width: "80%",
                 fontSize: "26px",
                 fontWeight: "600",
                 borderBottom: "0.5px solid grey",
@@ -431,37 +433,156 @@ const Address = () => {
           </VStack>
         </VStack>
 
-        <div className="paySummary">
-          <div className="priceDatacont">
-            <div>Cart Total </div>
-            {/* <div>₹{tPrice}</div> */}
-          </div>
-          <div className="priceDatacont">
-            <div>Discounts </div>
-            <div>-₹{0}</div>
-          </div>
-          <div className="priceDatacont">
-            <div>Delivery Charges </div>
-            <div
-              style={{
-                color: "#359d40",
-                fontWeight: "bold",
-              }}
-            >
-              FREE
-            </div>
-          </div>
-          <div className="priceDatacont">
-            <div>Total Payable Amount </div>
-            {/* <div>₹{tPrice}</div> */}
-          </div>
-          <div className="priceDatacont">
-            <div className="makeBold">Booking Amount (Pay Now) </div>
+        {/* ..........................Price detail card...................................... */}
 
-            {/* <div className="makeBold">₹{tPrice}</div> */}
+        <Box width="350px" border="0px solid red" marginTop="50px">
+          <Accordion allowToggle>
+            <AccordionItem>
+              <h2>
+                <AccordionButton>
+                  <Box
+                    as="span"
+                    display="flex"
+                    justifyContent="space-between"
+                    flex="1"
+                    textAlign="left"
+                  >
+                    <Heading as="h1" fontSize="16px">
+                      Order Summary
+                    </Heading>
+                    {/* {<Heading fontSize="14px">{cartData.length} Items</Heading>} */}
+                  </Box>
+                  {/* <AccordionIcon /> */}
+                </AccordionButton>
+              </h2>
+              <AccordionPanel
+                pb={4}
+                display="flex"
+                justifyContent={"space-between"}
+              >
+                {/* <Image
+                  // src={img}
+                  alt="Image"
+                  boxSize="90px"
+                  objectFit="cover"
+                /> */}
+                {/* <Text>{name}</Text> */}
+              </AccordionPanel>
+            </AccordionItem>
+            <AccordionItem>
+              <h2>
+                <AccordionButton>
+                  <Box
+                    as="span"
+                    display="flex"
+                    justifyContent="space-between"
+                    flex="1"
+                    textAlign="left"
+                    // border="1px solid red"
+                  >
+                    <Heading as="h1" fontSize="16px">
+                      Order Total
+                    </Heading>
+                    {/* {<Heading fontSize="14px">₹{totalPrice}</Heading>} */}
+                    <Box
+                      display="flex"
+                      justifyContent="space-between"
+                      alignItems="center"
+                    >
+                      {/* <Text>Bag MRP ({cartData.length} items)</Text>
+                      <Text>₹{totalPrice}</Text> */}
+                    </Box>
+                    {/* {<Heading fontSize="14px">Rs{totalPrice + 50}</Heading>} */}
+                  </Box>
+                  <AccordionIcon />
+                </AccordionButton>
+              </h2>
+
+              <AccordionPanel pb={4}>
+                <Text display={"flex"} justifyContent="space-between">
+                  {/* <span>Bag MRP ({cartData.length} items)</span> */}
+                  {/* <span>Rs{totalPrice}</span> */}
+                </Text>
+                <Text display={"flex"} justifyContent="space-between">
+                  <span>After Discount</span>
+                  {/* <span>Rs{totalPrice - 100}</span> */}
+                </Text>
+                <Text display={"flex"} justifyContent="space-between">
+                  <span>Delievery Charges</span>
+                  <span
+                    style={{
+                      fontWeight: "bold",
+                      fontSize: "16px",
+                      color: "#2de02d",
+                    }}
+                  >
+                    {/* {totalPrice - totaldiscount} */}
+                    Free
+                  </span>
+                </Text>
+                <Text display={"flex"} justifyContent="space-between">
+                  <span>Saving At this Time</span>
+                  <span
+                    style={{
+                      fontWeight: "bold",
+                      fontSize: "16px",
+                      color: "#2de02d",
+                    }}
+                  >
+                    {/* {totalPrice - totaldiscount} */}
+                    Rs.100
+                  </span>
+                </Text>
+                <Text display={"flex"} justifyContent="space-between">
+                  <span>Shipping</span>
+                  <span>Rs.50</span>
+                </Text>
+                <Heading
+                  display={"flex"}
+                  justifyContent="space-between"
+                  as="h1"
+                  fontSize="16px"
+                >
+                  <span>Booking amount (Pay Now)</span> <span>Rs{}</span>
+                  {/* <span>You Pay</span> <span>Rs{totalPrice + 50}</span>{" "} */}
+                </Heading>
+              </AccordionPanel>
+            </AccordionItem>
+          </Accordion>
+          <Box display="flex" gap="10px" mt="12px" p="12px 17px">
+            <Text fontSize={"12px"}>
+              Pay securely. Easy returns and exchange
+            </Text>
+            {/* <Image
+            w="39px"
+            h="37px"
+            src="https://adn-static1.nykaa.com/media/wysiwyg/Payments/desktop-icons/pay-secure-lock.png"
+            alt="image"
+          /> */}
+          </Box>
+          <div
+            style={{
+              display: "flex",
+              marginLeft: "50px",
+              border: "2px solid #ED7745",
+              width: "270px",
+            }}
+          >
+            <div style={{ width: "30px" }}>
+              <img
+                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAI4AAACOCAMAAADQI8A6AAAAY1BMVEX///8AAACIiIi0tLS5ubn39/ePj49DQ0MlJSXMzMzm5uYKCgrCwsJlZWWBgYHT09NxcXEbGxvb29tQUFB3d3fx8fEvLy8+Pj5XV1eYmJgqKio5OTlISEirq6sWFhYRERGioqLX8a7DAAAEKklEQVR4nO2baZuqIBiGy12yXJLSVv//rzwJqICmqME0Z97nk8NFcsv6LsxmAwKBQCAQ6C/IzULNQuowYX5Jd5oV+J4i0WFrRjtHZZxuhmhesr6nb4iiKZrIJM32MjV/jrSev9er4kTbuY/ToJTUKqcHdaXwnjR0G68VkkqFdprXhwd1S9fxSjbBORjAcc91S8H45KE4CgtwPY6vjOMZwNnclHGSyNYu56qMY06AAzhacY6epV3eRRnny/YdI7vylx0SgDOGo36EFqWnXeVJGcecAAdwtOIkkaNf6tbgXzyz1LdBwBmW85M4yC7zhFdeEJybWLpGVpUp4mAr1byrEO2KQSAZBx1NwNR6DgW5JBxspGuYwkmc3CDN9tRfQCJOaJJmKGIk4tAA6bMMY72yaRDw5I7jkANsKlL4CdGg26O3ugQcRHzAK9aPs0nIh/ci7CIOYfZ7XahBFsGxfzGOy2t2g/xP+j+fjeOWN59T/uaUGRR2rMS/5V698aK7tfePh1Lc9Gbj7KVNIlXOfaHu2Evvya55PvONz8XJHvKmpbr+w+u7bS/pxmwuTriTX6Zo74y5Hd2xYApnPNfUZhuW4ezq9OfzoY6De2MsqnFHluHsXfzSXR2HNvM69hBGRcNQYRQ2KyNbhUPK1U13lvk6143GbZeQ/BT9pm1iEofWpHuC1eLsSJeU5DlwDeLQ8anIM7feSQENtLHEqxkc4tOmpDPcU4dD05Yeeb6vwZk3lTFBuBALJePM7pz7Km8FzsyFznDQMM59NQ6v1YPFI5jB4acyh1N1TS2cysuOUHZEcAu71pO8nvoFwWYMhx/tDxgY9A1bv+bJ2p+SDDzbBvNRHBqcuPIvW2V+eYzAi7Kw9a/LLLSbP4RD4p4JihnyfgBnmXHqXhqGx6Odfc+0fWwuTlCcVFQzP6JBnEWaZWAMq7ld8RFPYsyx3rcu3AhO0LT/GccmPL1rKOkcyvc417ip8yk/q2pPz8Ip28054X2Jtzh5h/wxtw/HVn4sDmX2ehWOrOT1XIn7BMXxj6JyodbPe6GCAAdwAAdwAOd7cbCQM+2MwczuSu2oPWTcmK8et9+E+Iyu3VSfjSPbUWIopBM7p7EvFvvsZJbNH2sZDr5I72EmoyMXB7Td3gVrmnDAgVzuLMJ552d5cvGWmEuuLxfT18S96qNe6Pve6WW2aO/0Qn8P2ju91BP1YPrRsGW90/hFrZqwp+x/MW8wk0YlYHNffg1zWuavrFi46NP90hbu/7QpRFTx5Z1ZF/K3kKwmKfLr9x3AARzAARz9ODRQrp7WWyEaDBu4hcGLHsu5/u5huYuJAF9Fj7lrftArllo6T0CjnrGkVZP/xiebA1q1nx7UsRDihzU1VPz00a9C7eYJskxMoETl3z+pMIo0KzNxJwcEAoFAIBAIBPo/9Q8xm2xEVBgZ+QAAAABJRU5ErkJggg=="
+                alt=""
+              />
+            </div>
+            <div>EMIs from ₹498</div>
+            <a style={{ color: "#ED7745" }} href="">
+              Know More
+            </a>
           </div>
-        </div>
+        </Box>
       </div>
+
+      {/* .................................Button......................................... */}
 
       <div style={{ marginLeft: "130px" }}>
         <button
