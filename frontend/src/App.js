@@ -1,9 +1,11 @@
-import './App.css';
 import { Footer } from './components/Footer';
 import { Navbar } from './components/Navbar';
+import ProductCard from './components/ProductCard';
+import { Products } from './pages/Products';
 import { Allroutes } from './routes/Allroutes';
 
 function App() {
+
     return (
         <div className="App">
             <Navbar />
