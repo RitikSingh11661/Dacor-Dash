@@ -1,0 +1,22 @@
+.para {
+    font-size: 18px;
+    margin-left: 80px;
+    margin-top: 120px;
+}
+
+.paraFirst {
+    font-weight: bold;
+}
+
+.button {
+    color: #fa2d5d;
+    margin: 20px auto;
+    border: none;
+    font-weight: bold;
+    padding: 10px 16px;
+    width: 100%;
+    outline: none;
+    background-color: white;
+    cursor: pointer;
+    z-index: -0.5;
+}
