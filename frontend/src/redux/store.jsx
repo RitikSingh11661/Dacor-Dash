@@ -3,7 +3,16 @@ import thunk from 'redux-thunk'
 import {reducer as AuthReducer} from './Auth/reducer'
 import {reducer as AppReducer} from './App/reducer'
 import {reducer as AdminReducer} from './Admin/reducer'
-import {reducer as ProductReducer} from "./Product/product.reducer";
-const mainReducer= combineReducers({AuthReducer,AdminReducer,AppReducer,ProductReducer})
+import { reducer as ProductReducer } from "./Product/product.reducer";
+import { reducer as WishlistReducer } from "./Wishlist/reducer"
+import { reducer as shippingReducer } from "./ShippingReducer/reducer";
+const mainReducer = combineReducers({
+  AuthReducer,
+  AdminReducer,
+  AppReducer,
+  ProductReducer,
+  shippingReducer,
+  WishlistReducer,
+});
 
 export const store = legacy_createStore(mainReducer,applyMiddleware(thunk))

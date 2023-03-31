@@ -5,7 +5,7 @@ import {
   AccordionButton,
   AccordionItem,
   Accordion,
-   Text,
+  Text,
   Button,
   Center,
   Divider,
@@ -31,10 +31,10 @@ import Stepper from "../../components/Stepper";
 // import Swal from "sweetalert2";
 // import CartMap from "../../Components/CartMap/Cartmap";
 import styles from "./Address.module.css";
-// import { useDispatch, useSelector, shallowEqual } from "react-redux";
-// import { postRequestAddress } from "../../Redux/UserReducer/action";
-// import { useEffect } from "react";
-// import { getCartProducts } from "../../Redux/CartReducer/Action";
+import { useDispatch, useSelector, shallowEqual } from "react-redux";
+import { postRequestAddress } from "../../redux/ShippingReducer/action";
+
+// import { getCartProducts } from "../../redux/ShippingReducer/action";
 
 const initialState = {
   firstname: "",
@@ -48,7 +48,7 @@ const initialState = {
 const Address = () => {
   const [isButLoading, setIsButLoading] = useState(false);
   const [data, setdata] = useState(initialState);
-  // let dispatch = useDispatch();
+  let dispatch = useDispatch();
   const toast = useToast();
   const navigate = useNavigate();
 
@@ -63,7 +63,7 @@ const Address = () => {
   //     dispatch(getCartProducts());
   // }, []);
 
-  // let totalprice;
+  let totalprice;
   // if (products.length == 0) {
   //     totalprice = 0;
   // } else {
@@ -71,6 +71,10 @@ const Address = () => {
   //         return acc + Number(el.price);
   //     }, 0);
   // }
+
+  const address = useSelector((store) => store.shippingReducer.address);
+  console.log(address);
+  // console.log(store);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -112,7 +116,7 @@ const Address = () => {
     ) {
       setTimeout(() => {
         setIsButLoading(false);
-        // dispatch(postRequestAddress(data));
+        dispatch(postRequestAddress(data));
         toast({
           title: "Please Choose a Payment Method",
           description: "",
@@ -122,8 +126,8 @@ const Address = () => {
           isClosable: true,
           position: "top",
         });
-        // setdata(initialState);
-        navigate("/paymentmethod");
+        setdata(initialState);
+        navigate("/payment");
       }, 2000);
     }
 
@@ -213,6 +217,9 @@ const Address = () => {
             <FormControl>
               <FormLabel>Address*</FormLabel>
               <Input
+                name="address1"
+                value={data.address1}
+                onChange={handleChange}
                 style={{
                   border: "1px solid #ED7745",
                   height: "35px",
@@ -405,9 +412,9 @@ const Address = () => {
               <FormControl>
                 {/* <FormLabel>GSTIN</FormLabel> */}
                 <Input
-                  name="firstname"
-                  value={data.firstname}
-                  onChange={handleChange}
+                  // name="firstname"
+                  // value={data.firstname}
+                  // onChange={handleChange}
                   style={{
                     border: "1px solid #ED7745",
                     height: "35px",
@@ -601,8 +608,18 @@ const Address = () => {
             cursor: "pointer",
             borderRadius: "2px",
           }}
+          onClick={handleSubmit}
         >
-          SAVE AND CONTINUE
+          {!isButLoading && `    SAVE AND CONTINUE `}
+          {isButLoading && (
+            <Spinner
+              thickness="4px"
+              speed="0.55s"
+              emptyColor="gray.200"
+              color="#17274a"
+              size="md"
+            />
+          )}
         </button>
       </div>
     </div>

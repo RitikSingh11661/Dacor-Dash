@@ -8,6 +8,7 @@ const { userRoutes } = require("./routes/user.routes");
 const { connection } = require("./configs/db");
 const { verifyToken } = require("./middlewares/auth.middleware");
 const { wishlistRoutes } = require("./routes/wishlist.routes");
+const { shippingRouter } = require("./routes/shippingRoute");
 require("dotenv").config();
 
 const app = express();
@@ -18,11 +19,12 @@ app.use("/admin", adminRoutes);
 app.use("/user", userRoutes);
 
 app.use("/product", prodRoutes);
-
+app.use("/address", shippingRouter);
 app.use(verifyToken);
 app.use("/cart", cartRoutes);
 app.use("/order", orderRoutes);
 app.use("/wishlist", wishlistRoutes);
+
 app.listen(process.env.port, async () => {
     try {
         await connection;
