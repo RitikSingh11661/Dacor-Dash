@@ -1,3 +1,4 @@
+import Filter_Sort from './components/Filter_Sort';
 import { Footer } from './components/Footer';
 import { Navbar } from './components/Navbar';
 import ProductCard from './components/ProductCard';
@@ -8,9 +9,11 @@ function App() {
 
     return (
         <div className="App">
-            <Navbar />
+            {/* <Navbar />
             <Allroutes />
-            <Footer />
+            <Footer /> */}
+            {/* <Filter_Sort/> */}
+            <Products/>
         </div>
     );
 }

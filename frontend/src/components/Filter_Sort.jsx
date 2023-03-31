@@ -10,7 +10,7 @@ const Filter_Sort = () => {
     const [sortVal,setSortVal] = useState(searchParams.get("sort") || "")
     const [filterVal,setFilterVal] = useState(searchParamsfilter||[])
     
-    console.log(sortVal)
+   
     const [order,setOrder] = useState("asc");
 
     const [showCategory,setShowCategory] = useState(false)
@@ -66,10 +66,10 @@ const Filter_Sort = () => {
     }
 
   return (
-    <div>
+    <div style={{position:"sticky",top:"0",zIndex:"5"}}>
       <HStack
         color="#494848"
-        p="0 17%"
+        p={{base:"0 0",md:"0 0",lg:"0 17%"}} 
         justifyContent={"space-between"}
         fontFamily={`"Mr Eaves XL Modern",sans-serif`}
         >
@@ -78,7 +78,7 @@ const Filter_Sort = () => {
           <Text textAlign={"left"} fontSize="13px">
             FILTERS
           </Text>
-          <HStack mt="5px" position="relative">
+          <HStack mt="5px">
             <Box onMouseEnter={handleMouseEnterCategory}
           onMouseLeave={handleMouseLeaveCategory}>
               <CheckboxGroup value={filterVal} onChange={handleFilter} colorScheme="orange">
@@ -224,7 +224,6 @@ const Filter_Sort = () => {
         </VStack>
        
       </HStack>
-      <Divider p="0 17%" />
     </div>
   );
 }

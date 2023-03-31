@@ -22,25 +22,21 @@ export const Products = () => {
 
   const location = useLocation();
 
-  console.log(searchParams,location)
+  console.log(searchParams.getAll("filter"))
   useEffect(()=>{
     if(products.length===0 || location){
       const getProductsParams = {
-        params:{
-          category:searchParams.getAll("filter"),
-          _sort:"price",
-          _orderBy:searchParams.get("sort"),
-        }
+        
       }
       dispatch(getProducts(getProductsParams))
     }
   },[location.search])
 
   return (
-    <div>
+    <div >
       <Filter_Sort/>
-     <Box m="auto" p="0 15%" >
-        <Flex flexWrap={"wrap"}  justifyContent="center" gap={2} rowGap={"-14"} >
+     <Box m="auto" p={{base:"0 0",md:"0 0",lg:"0 15%"}} >
+        <Flex flexWrap={"wrap"}  justifyContent={{base:"center",md:"center",lg:"center"}} gap={2} rowGap={"-14"} >
            {
             products?.length>0 &&
             products.map((prod)=>(
