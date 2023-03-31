@@ -15,6 +15,7 @@
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -41,3 +42,19 @@
     -->
   </body>
 </html>
+<script>
+  window.addEventListener('dfMessengerLoaded', function (event) {
+    // Chatbot widget is loaded and ready to use
+    console.log('Chatbot widget is ready to use');
+  });
+
+  function loadChatbot() {
+    // Load the chatbot widget
+    window.dfMessengerSettings = {
+      projectId: '<your project ID>',
+      accessToken: '<your access token>',
+      chatTitle: 'Chat with our support',
+    };
+    window.dfMessenger.init();
+  }
+</script>
