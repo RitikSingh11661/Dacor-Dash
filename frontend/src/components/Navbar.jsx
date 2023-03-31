@@ -36,7 +36,7 @@ export const Navbar = () => {
                     <Link>UL Services</Link>
                 </HStack>
             </HStack>
-            <Grid alignItems={"center"} p={"0 15%"} gap={"5%"} gridTemplateColumns={"1fr 4fr 1fr"}>
+            <Grid mb={"7px"} alignItems={"center"} p={"15px 15%"} gap={"5%"} gridTemplateColumns={"1fr 4fr 1fr"}>
                 <Link to="/"><Image src="https://i.ibb.co/mtrWJVh/Decor-Dash-logo-cropped.png" alt="https://i.ibb.co/mtrWJVh/Decor-Dash-logo-cropped.png" /></Link>
                 <InputGroup>
                     <Input onKeyDown={handleKeyDown} type={"search"} />
