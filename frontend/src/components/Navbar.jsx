@@ -37,7 +37,7 @@ export const Navbar = () => {
                 </HStack>
             </HStack>
             <Grid alignItems={"center"} p={"0 15%"} gap={"5%"} gridTemplateColumns={"1fr 4fr 1fr"}>
-                <Link to="/"><Image src="https://i.ibb.co/BGdc8jt/urban-ladder.jpg" alt="https://i.ibb.co/BGdc8jt/urban-ladder.jpg" /></Link>
+                <Link to="/"><Image src="https://i.ibb.co/mtrWJVh/Decor-Dash-logo-cropped.png" alt="https://i.ibb.co/mtrWJVh/Decor-Dash-logo-cropped.png" /></Link>
                 <InputGroup>
                     <Input onKeyDown={handleKeyDown} type={"search"} />
                     <InputRightElement>

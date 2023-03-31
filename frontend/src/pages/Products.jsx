@@ -8,58 +8,58 @@ import { getProducts } from '../redux/Product/product.action';
 
 export const Products = () => {
 
-  const {products,activePage,loading,perPage} = useSelector((store)=>{
-    return {
-      products : store.ProductReducer.product,
-      loading : store.ProductReducer.loading,
-      perPage : store.ProductReducer.perPage,
-      activePage : store.ProductReducer.activePage
-    }
-  },shallowEqual);
-  const dispatch = useDispatch();
-
-  const [searchParams] = useSearchParams();
-
-  const location = useLocation();
-
-  console.log(searchParams,location)
-  useEffect(()=>{
-    if(products.length===0 || location){
-      const getProductsParams = {
-        params:{
-          category:searchParams.getAll("filter"),
-          _sort:"price",
-          _orderBy:searchParams.get("sort"),
+    const { products, activePage, loading, perPage } = useSelector((store) => {
+        return {
+            products: store.ProductReducer.product,
+            loading: store.ProductReducer.loading,
+            perPage: store.ProductReducer.perPage,
+            activePage: store.ProductReducer.activePage
         }
-      }
-      dispatch(getProducts(getProductsParams))
-    }
-  },[location.search])
+    }, shallowEqual);
+    const dispatch = useDispatch();
 
-  return (
-    <div>
-      <Filter_Sort/>
-     <Box m="auto" p="0 15%" >
-        <Flex flexWrap={"wrap"}  justifyContent="center" gap={2} rowGap={"-14"} >
-           {
-            products?.length>0 &&
-            products.map((prod)=>(
-             <Box key={prod.id}>
-               <ProductCard
-               
-               image={prod.img}
-               desc={prod.description}
-               brand={prod.brand}
-               oriPrice={prod.originalPrice}
-               category={prod.category}
-               disPrice={prod.discountPrice}
-              />
-             </Box>
-            ))
-           }
-        </Flex>
-     </Box>
+    const [searchParams] = useSearchParams();
 
-    </div>
-  )
+    const location = useLocation();
+
+    console.log(searchParams, location)
+    useEffect(() => {
+        if (products.length === 0 || location) {
+            const getProductsParams = {
+                params: {
+                    category: searchParams.getAll("filter"),
+                    _sort: "price",
+                    _orderBy: searchParams.get("sort"),
+                }
+            }
+            dispatch(getProducts(getProductsParams))
+        }
+    }, [location.search])
+
+    return (
+        <div>
+            <Filter_Sort />
+            <Box m="auto" p="0 15%" >
+                <Flex flexWrap={"wrap"} justifyContent="center" gap={2} rowGap={"-14"} >
+                    {
+                        products?.length > 0 &&
+                        products.map((prod) => (
+                            <Box key={prod.id}>
+                                <ProductCard
+
+                                    image={prod.img}
+                                    desc={prod.description}
+                                    brand={prod.brand}
+                                    oriPrice={prod.originalPrice}
+                                    category={prod.category}
+                                    disPrice={prod.discountPrice}
+                                />
+                            </Box>
+                        ))
+                    }
+                </Flex>
+            </Box>
+
+        </div>
+    )
 }
