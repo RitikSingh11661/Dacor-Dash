@@ -27,16 +27,18 @@ import {
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import styles from "./Payment.module.css";
-import CreditCardIcon from "@mui/icons-material/CreditCard";
+import { getRequestAddress } from "../../redux/ShippingReducer/action";
 // import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import Stepper from "../../components/Stepper";
+import ShippingDetailsCard from "../Address/ShippingDetailsCard";
+import { useSelector } from "react-redux";
 
 const Payment = () => {
   const [isButLoading, setIsButLoading] = useState(false);
-
+ const address = useSelector((store) => store.shippingReducer.address);
   const navigate = useNavigate();
-
+console.log(address)
   const handlePay = () => {
     setIsButLoading(true);
     setTimeout(() => {
@@ -50,7 +52,15 @@ const Payment = () => {
     <div>
       <Stepper />
       <div id={styles.main}>
-        <div id={styles.first}></div>
+        <div id={styles.first}>
+          {address.map((ele) => {
+            return (
+              <div className={styles.single_card_address}>
+                <ShippingDetailsCard key={ele.id} {...ele} />
+              </div>
+            );
+          })}
+        </div>
         <div id={styles.method}>
           <Tabs
             style={{
@@ -353,7 +363,7 @@ const Payment = () => {
           </div>
         </div>
 
-        <Box width="30%" border="0px solid red"  >
+        <Box width="30%" border="0px solid red">
           <Accordion allowToggle>
             <AccordionItem>
               <h2>

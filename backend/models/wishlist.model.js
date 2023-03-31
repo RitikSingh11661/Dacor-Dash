@@ -3,7 +3,6 @@ const mongoose = require("mongoose");
 const schema = mongoose.Schema({
     userId: String,
     prodId: String,
-    status: String,
     name: String,
     image: String,
     brand: String,
@@ -12,6 +11,6 @@ const schema = mongoose.Schema({
     category: String
 })
 
-const orderModel = mongoose.model("order", schema);
+const wishlistModel = mongoose.model("wishlist", schema);
 
-module.exports = { orderModel };
+module.exports = { wishlistModel };
