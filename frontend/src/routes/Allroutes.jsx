@@ -10,7 +10,8 @@ import Payment from "../pages/Payment/Payment";
 import { Products } from "../pages/Products";
 import { Signup } from "../pages/Signup";
 import { SingleProduct } from "../pages/SingleProduct";
-import { Wishlist } from "../pages/Wishlist";
+import Wishlist from "../pages/Wishlist/Wishlist";
+
 
 export const Allroutes = () => {
     return (
@@ -23,7 +24,7 @@ export const Allroutes = () => {
             <Route path="/cart" element={<Cart />} />
             <Route path="/orders" element={<Orders />} />
             <Route path="/product/:id" element={<SingleProduct />} />
-            <Route path="/wishlist" element={<Wishlist />} />
+            <Route path="/wishlist" element={<Wishlist/>} />
             <Route path="/address" element={<Address />} />
             <Route path="/payment" element={<Payment/>} />
             <Route path="*" element={<NotFound />} />
