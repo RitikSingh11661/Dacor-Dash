@@ -16,7 +16,7 @@
 
 #catNav {
     width: 100%;
-    padding: 0 15%;
+    /* padding: 0 15%; */
     position: relative;
     align-items: flex-start;
 }
@@ -58,6 +58,17 @@
     cursor: default;
     text-decoration: underline #ED7745 2px solid;
     text-underline-offset: 80%;
+}
+
+/* navbar scrollbar */
+
+.scroller {
+    overflow: scroll;
+    scrollbar-width: none;
+}
+
+.scroller>p {
+    white-space: nowrap;
 }
 
 /* User box */

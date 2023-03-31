@@ -82,7 +82,6 @@ export const Homepage = () => {
                 <Swiper
                     style={{ width: "95%" }}
                     modules={[Navigation, Pagination]}
-                    onSwiper={(swiper) => console.log(swiper)}
                     loop
                     pagination={{ clickable: true }}
                     navigation

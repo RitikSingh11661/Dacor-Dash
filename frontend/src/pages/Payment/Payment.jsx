@@ -27,7 +27,7 @@ import {
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import styles from "./Payment.module.css";
-import CreditCardIcon from "@mui/icons-material/CreditCard";
+// import CreditCardIcon from "@mui/icons-material/CreditCard";
 // import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import Stepper from "../../components/Stepper";
