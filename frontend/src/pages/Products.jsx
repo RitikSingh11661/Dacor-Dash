@@ -21,7 +21,7 @@ export const Products = () => {
     const [searchParams] = useSearchParams();
 
     const location = useLocation();
-
+    
     console.log(searchParams, location)
     useEffect(() => {
         if (products.length === 0 || location) {
