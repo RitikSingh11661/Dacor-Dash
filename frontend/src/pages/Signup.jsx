@@ -1,19 +1,18 @@
-import { Flex, Box, FormControl, FormLabel, Input, Stack, Button, Heading, Text, useToast} from "@chakra-ui/react";
+import { Flex, Box, FormControl, FormLabel, Input, Stack, Button, Heading, Text, useToast } from "@chakra-ui/react";
 import { Link, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import {useDispatch} from "react-redux";
 import { GoogleLoginButton } from "react-social-login-buttons";
-import { getUsers, signup } from "../redux/Auth/actions";
+import { signup } from "../redux/Auth/actions";
 import { useGoogleLogin, useGoogleOneTapLogin } from "@react-oauth/google";
 import axios from "axios";
 // import Image from '../../assets/signupbg.jpg'
 
 export const Signup = () => {
-  const initUser = { email: "", password: "", name: "", cart: [], orders: [] };
+  const initUser = { email: "", password: "", name: "", wallet: 100 };
   const [user, setUser] = useState(initUser);
   const toast = useToast();
   const dispatch = useDispatch();
-  const users = useSelector((store) => store.AuthReducer.users);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -21,50 +20,50 @@ export const Signup = () => {
     setUser({ ...user, [name]: value });
   };
 
-  const getUserDetails = (tokenResponse) => {
+  const getGoogleUserDetails = (tokenResponse) => {
     try {
       const accessToken = tokenResponse.access_token;
-      fetch("https://www.googleapis.com/oauth2/v1/userinfo?alt=json", {
-        headers: { Authorization: `Bearer ${accessToken}` },
-      })
-        .then((response) => response.json())
-        .then((data) => console.log(data));
+      axios.get("https://www.googleapis.com/oauth2/v1/userinfo?alt=json", {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }).then((response) =>{
+        const newUser={email:response.data.email,name:response.data.name,password:'1234',wallet:100,picture:response.data.picture};
+        handleSubmit(1,newUser);
+      }).catch((error) => console.log("error while login", error));
     } catch (error) {
       console.log("error while login", error);
     }
   };
 
-  const login = useGoogleLogin({
-    onSuccess: (tokenResponse) => getUserDetails(tokenResponse),
+  const loginWithGoogle = useGoogleLogin({
+    onSuccess: (tokenResponse) => getGoogleUserDetails(tokenResponse),
   });
 
-  // normal with api
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    let bool = users.some((el) => {
-      return el.email === user.email;
-    });
-
-    if (bool) {
-      toast({
-        title: "User already exist.",
-        description: `Try different ${user.email}`,
-        status: "error",
-        duration: 3000,
-        position: "top",
-        isClosable: true,
-      });
-    } else {
+  const handleSubmit = (e,user) => {
+    if(typeof e !== 'number'){
+      e.preventDefault();
+    }
+    axios.post('https://talented-teal-hosiery.cyclic.app/user/add', JSON.stringify(user), {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(() => {
       dispatch(signup(user, newToastSucess, newToastFail)).then(() => {
-        dispatch(getUsers);
+        // dispatch(getUsers);
         navigate("/login");
       });
-    }
+    }).catch(() =>{ 
+        toast({
+          title: "User already exist.",
+          description: `Try different ${user.email}`,
+          status: "error",
+          duration: 3000,
+          position: "top",
+          isClosable: true,
+        });
+      })
   };
-
-  useEffect(() => {
-    dispatch(getUsers);
-  }, []);
 
   let newToastSucess = () => {
     return toast({
@@ -100,7 +99,7 @@ export const Signup = () => {
   //     console.log('Login Failed');
   //   },
   // });
-  
+
   return (
     <Flex
       minH={"100vh"}
@@ -123,7 +122,7 @@ export const Signup = () => {
           bg={"white"}
           background={"rgba(255, 255, 255, 1.75)"}
         >
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={(e)=>handleSubmit(e,user)}>
             <Stack spacing={4}>
               <FormControl id="name">
                 <FormLabel color={"#002E6E"}>Name</FormLabel>
@@ -174,9 +173,10 @@ export const Signup = () => {
               >
                 Sign up
               </Button>
-              <GoogleLoginButton onClick={login}></GoogleLoginButton>
+              <GoogleLoginButton onClick={loginWithGoogle}></GoogleLoginButton>
+
               <Box display={"flex"} justifyContent="space-evenly">
-                <Text as={"span"}  textAlign={"center"}>
+                <Text as={"span"} textAlign={"center"}>
                   Already have an account?{" "}
                 </Text>
                 <Text fontWeight="600" color="#002E6E" as={"span"}>
@@ -188,5 +188,5 @@ export const Signup = () => {
         </Box>
       </Stack>
     </Flex>
-  );  
+  );
 };
