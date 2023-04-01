@@ -17,14 +17,13 @@ export const Products = () => {
         }
     }, shallowEqual);
     const dispatch = useDispatch();
-
+    
     const [searchParams] = useSearchParams();
 
     const location = useLocation();
-    
-    console.log(searchParams, location)
+    console.log(products)
     useEffect(() => {
-        if (products.length === 0 || location) {
+        if (products?.length === 0 || location) {
             const getProductsParams = {
                 params: {
                     category: searchParams.getAll("filter"),
@@ -32,7 +31,7 @@ export const Products = () => {
                     _orderBy: searchParams.get("sort"),
                 }
             }
-            dispatch(getProducts(getProductsParams))
+            dispatch(getProducts())
         }
     }, [location.search])
 
@@ -43,7 +42,7 @@ export const Products = () => {
                 <Flex flexWrap={"wrap"} justifyContent="center" gap={2} rowGap={"-14"} >
                     {
                         products?.length > 0 &&
-                        products.map((prod) => (
+                        products?.map((prod) => (
                             <Box key={prod.id}>
                                 <ProductCard
 

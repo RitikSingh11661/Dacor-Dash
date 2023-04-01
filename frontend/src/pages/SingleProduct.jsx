@@ -4,12 +4,12 @@ import {MdLocalShipping} from "react-icons/md"
 
 export const SingleProduct = () => {
   return (
-        <Container maxW={'7xl'}>
+        <Container maxW={'5xl'}>
             <SimpleGrid
                 columns={{ base: 1, lg: 2 }}
                 spacing={{ base: 8, md: 10 }}
                 py={{ base: 18, md: 24 }}>
-                <Flex>
+                <Flex >
                     <Skeleton borderRadius="md" fadeDuration={1}>
                     <Image
                         rounded={'md'}
@@ -27,8 +27,7 @@ export const SingleProduct = () => {
                         <Heading
                             lineHeight={1.1}
                             fontWeight={600}
-                            fontSize={{ base: '2xl', sm: '4xl', lg: '5xl' }}>
-                            
+                            fontSize={{ base: '2xl', sm: '4xl', lg: '5xl' }}>     
                         </Heading>
                         <Text
                             color={useColorModeValue('gray.900', 'gray.400')}

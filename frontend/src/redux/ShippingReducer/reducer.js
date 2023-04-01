@@ -13,7 +13,6 @@ const initialState = {
 };
 
 export const reducer = (state = initialState, { type, payload }) => {
-    console.log(payload)
   switch (type) {
     case POST_REQUEST:
       return { ...state, isLoading: true };
