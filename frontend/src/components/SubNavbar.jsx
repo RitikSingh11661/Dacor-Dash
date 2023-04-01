@@ -112,7 +112,7 @@ export const SubNavbar = () => {
         }
     }
     return (
-        <Box id="catNavMain" position={"sticky"} top={0} zIndex={3} p={"0 15%"}>
+        <Box id="catNavMain" position={"sticky"} top={0} zIndex={3} p={{ base: "0px 5px",md:"0px 5px", lg: "0px 15%" }}>
             <HStack className="scroller" position={"relative"} justify={"space-between"} h={"42px"} fontSize={"15px"} id="stack3" width={"100%"} align={"center"} >
                 <Text onMouseEnter={handleMouseEnter}>Deal Zone</Text>
                 <Text onMouseEnter={handleMouseEnter}>Sofas & Recliners</Text>
