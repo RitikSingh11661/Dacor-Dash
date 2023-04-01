@@ -6,32 +6,58 @@ import {
   REMOVE_FROM_WISHLIST,
 } from "./actionTypes";
 
+const wishlistAdd = () => {
+  return { type: ADD_TO_WISHLIST };
+};
 
-export const getWishlist = (dispatch) => {
-  dispatch(  GET_ITEMS_TO_WISHLIST());
+const wishlistGet = (payload) => {
+  return { type: GET_ITEMS_TO_WISHLIST  , payload};
+};
+
+const wishlistRemove = () => {
+  return { type: REMOVE_FROM_WISHLIST };
+};
+
+export const getWishlist =()=> (dispatch) => {
+  dispatch(wishlistGet());
   axios
-    .get(`https://talented-teal-hosiery.cyclic.app/wishlist`)
-    .then((res) => dispatch(GET_ITEMS_TO_WISHLIST(res.data)))
-    .catch(() => dispatch(GET_ITEMS_TO_WISHLIST()));
+    .get(`https://talented-teal-hosiery.cyclic.app/wishlist`, {
+      headers: {
+        token:
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDI2ZWQ2MGIwZWY4ZjBjNmM1ZTM5ODQiLCJpYXQiOjE2ODAzNTk3NTUsImV4cCI6MTY4MDM2MzM1NX0.Uxw4gCFTyYKPiqlBQZ9FnvD9xKdaHHEGxfTjX93blHc",
+      },
+    })
+    .then((res) => dispatch(wishlistGet(res.data.msg)))
+    .catch((error) => {
+      console.log(error);
+    });
 };
 
 export const addWishlist = (product) => async (dispatch) => {
-  dispatch( ADD_TO_WISHLIST());
+  dispatch(wishlistAdd());
   try {
     const { data } = await axios.post(
-      "https://talented-teal-hosiery.cyclic.app/wishlist/add",  product );
-    dispatch(ADD_TO_WISHLIST(data));
+      "https://talented-teal-hosiery.cyclic.app/wishlist/add",
+      product,
+    
+    );
+    dispatch(wishlistAdd(data));
   } catch (error) {
-    dispatch(ADD_TO_WISHLIST(error));
+   console.log(error)
   }
 };
 
 export const removeWishlist = (id) => async (dispatch) => {
-  dispatch(REMOVE_FROM_WISHLIST());
+  dispatch(wishlistRemove());
   try {
-    axios.delete(`https://talented-teal-hosiery.cyclic.app/wishlist/delete/${id}`);
-    dispatch(REMOVE_FROM_WISHLIST(id));
+    axios.delete(
+      `https://talented-teal-hosiery.cyclic.app/wishlist/delete/${id}`,
+     
+    );
+    dispatch(wishlistRemove(id));
   } catch (error) {
-    dispatch(REMOVE_FROM_WISHLIST(error));
+    console.log(error);
   }
 };
+
+

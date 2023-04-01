@@ -4,6 +4,8 @@ import { Navbar } from './components/Navbar';
 import ProductCard from './components/ProductCard';
 import { Products } from './pages/Products';
 import { Allroutes } from './routes/Allroutes';
+import "mdb-react-ui-kit/dist/css/mdb.min.css";
+import "@fortawesome/fontawesome-free/css/all.min.css";
 
 function App() {
 

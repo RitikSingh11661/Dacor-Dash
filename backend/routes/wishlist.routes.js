@@ -21,7 +21,7 @@ wishlistRoutes.post("/add", async (req, res) => {
             if (req.body.prodId && req.body.userId && req.body.name && req.body.image && req.body.brand && req.body.originalPrice && req.body.discountPrice && req.body.category) {
                 const newData = new wishlistModel(req.body);
                 await newData.save();
-                res.status(200).send({ msg: "Product has been added to cart", status: "success" });
+                res.status(200).send({ msg: "Product has been added to Wishlist", status: "success" });
             } else {
                 res.status(400).send({ msg: "Invalid format" });
             }
@@ -36,7 +36,7 @@ wishlistRoutes.post("/add", async (req, res) => {
 wishlistRoutes.delete("/delete/:id", async (req, res) => {
     try {
         await wishlistModel.findByIdAndDelete(req.params.id);
-        res.status(200).send({ msg: "Cart item has been deleted", status: "success" });
+        res.status(200).send({ msg: "Wishlist item has been deleted", status: "success" });
     } catch (e) {
         res.status(400).send({ msg: e.message });
     }
@@ -45,7 +45,7 @@ wishlistRoutes.delete("/delete/:id", async (req, res) => {
 wishlistRoutes.patch("/update/:id", async (req, res) => {
     try {
         await wishlistModel.findByIdAndDelete(req.params.id, req.body);
-        res.status(200).send({ msg: "Cart item details has been updated", status: "success" });
+        res.status(200).send({ msg: "Wishlist item details has been updated", status: "success" });
     } catch (e) {
         res.status(400).send({ msg: e.message });
     }
