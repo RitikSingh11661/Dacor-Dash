@@ -7,11 +7,14 @@
   justify-content: space-between;
   /* align-items: center; */
   padding: 30px 0px;
+  
 
 }
 #first{
     width: 30%;
- border: 1px solid red;
+ border: 0px solid red;
+   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
 }
 
 #method {
@@ -35,6 +38,7 @@
 .single_card_address {
     border: 2px solid transparent;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    width: 90%;
     padding: 15px 20px;
     margin: 20px auto;
     border-radius: 15px;
