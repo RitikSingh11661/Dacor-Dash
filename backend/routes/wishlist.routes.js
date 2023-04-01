@@ -16,7 +16,7 @@ wishlistRoutes.get("/", async (req, res) => {
 wishlistRoutes.post("/add", async (req, res) => {
     const { prodId, userId } = req.body;
     try {
-        const preCheck = await cartModel.findOne({ prodId, userId });
+        const preCheck = await wishlistModel.findOne({ prodId, userId });
         if (!preCheck) {
             if (req.body.prodId && req.body.userId && req.body.name && req.body.image && req.body.brand && req.body.originalPrice && req.body.discountPrice && req.body.category) {
                 const newData = new wishlistModel(req.body);
