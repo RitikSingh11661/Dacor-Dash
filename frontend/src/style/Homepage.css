@@ -56,6 +56,9 @@
 #gridDiv>div:nth-child(3)>*:hover svg {
     fill: #ED7745;
 }
+#gridDiv>div>div{
+    margin:auto;
+}
 
 #scalingSwiper img {
     transition: all .2s ease-in-out;
@@ -70,3 +73,8 @@
     padding: 3%;
 }
 
+@media screen, (min-width:"600px") and (max-width:"1000px"){
+    #scalingSwiper{
+        slides-per-view:2;
+    }
+}

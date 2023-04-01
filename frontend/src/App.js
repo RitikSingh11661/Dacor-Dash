@@ -9,11 +9,11 @@ function App() {
 
     return (
         <div className="App">
-            {/* <Navbar />
+            <Navbar />
             <Allroutes />
-            <Footer /> */}
+            <Footer />
             {/* <Filter_Sort/> */}
-            <Products/>
+            {/* <Products/> */}
         </div>
     );
 }

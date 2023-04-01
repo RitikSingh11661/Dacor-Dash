@@ -76,7 +76,7 @@ export const Homepage = () => {
         },
     ]
     return (
-        <Box id="homepage">
+        <Box id="homepage" textAlign={"center"}>
             <SubNavbar />
             <VStack>
                 <Swiper
@@ -95,7 +95,7 @@ export const Homepage = () => {
             </VStack>
             <VStack p={"50px 15%"} id='gridDiv'>
                 <Text fontFamily={"Mrs Eaves XL Serif"} fontSize={"28px"} textDecoration={"underline 1px #ed7745"} textUnderlineOffset={"20px"} color={"#2f4858"} letterSpacing={"3px"} >Explore Our Furniture Range</Text>
-                <Grid width={'100%'} templateColumns={"1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr"}>
+                <Grid width={'100%'} templateColumns={{ base: 'repeat(2 ,1fr)', md: "repeat(4,1fr)", lg: 'repeat(8,1fr)' }}>
                     <GridItem>
                         <Image src='https://www.ulcdn.net/media/web-home-popular-categories/deal_zone_icon-15_Desktop.svg?1665149548' alt='https://www.ulcdn.net/media/web-home-popular-categories/deal_zone_icon-15_Desktop.svg?1665149548' />
                         Deal Zone
@@ -129,7 +129,7 @@ export const Homepage = () => {
                         Seating
                     </GridItem>
                 </Grid>
-                <Grid width={"100%"} templateColumns={"1fr 1fr 1fr 1fr 1fr 1fr 1fr"}>
+                <Grid width={"100%"} templateColumns={{ base: 'repeat(2 ,1fr)', md: "repeat(4,1fr)", lg: 'repeat(8,1fr)' }}>
                     <GridItem>
                         <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 30 30" class="category-icon"><title>UL_CATEGORY_ICONS</title><path d="M27 19.6H2.85a.47.47 0 0 0-.5.5v9.4a.47.47 0 0 0 .5.5h3.8a.47.47 0 0 0 .5-.5v-5.7h15.8v5.7a.47.47 0 0 0 .5.5h3.7a.47.47 0 0 0 .5-.5v-9.4a.77.77 0 0 0-.65-.5zm-.45 9.4h-2.7v-5.7a.47.47 0 0 0-.5-.5H6.65a.47.47 0 0 0-.5.5V29h-2.8v-8.4h23.2V29z"></path></svg>Coffee Tables
                     </GridItem>
