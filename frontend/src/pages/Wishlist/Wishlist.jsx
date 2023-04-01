@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 // import { useDispatch, useSelector } from "react-redux";
-// import { getWishlist } from "../../redux/Wishlist/actions";
+import { getWishlist } from "../../redux/Wishlist/actions";
 import WishlistCard from "./WishlistCard";
 import { Box, Grid } from "@chakra-ui/react";
 
