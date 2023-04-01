@@ -13,7 +13,7 @@ function App() {
             <Allroutes />
             <Footer />
             {/* <Filter_Sort/> */}
-            <Products/>
+            {/* <Products/> */}
         </div>
     );
 }

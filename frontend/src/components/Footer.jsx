@@ -9,15 +9,15 @@ export const Footer = () => {
     return (
         <Box>
             <VStack textAlign={"left"} divider={<StackDivider borderColor='gray.200' />}>
-                <VStack p={"50px 15%"} pb={"25px"}>
+                <VStack p={{ base: "50px 5px", md: "50px 5px", lg: "50px 15%" }} pb={"25px"}>
                     <Text width={"auto"} letterSpacing={"4px"}>SIGN UP AND GET A CHANCE TO WIN THE GIVEAWAY OF THE WEEK.</Text>
-                    <Grid gap={"2%"} gridTemplateColumns={"3fr 1fr"} justify={"center"}>
+                    <Grid gap={"2%"} gridTemplateColumns={{ base: "1fr", md: "2fr 1fr", lg: "3fr 1fr" }} justify={"center"}>
                         <Input type={"text"} placeholder={"Your Email ID"} />
                         <Input bg={"#ED7745"} color={"white"} type={"submit"} value={"SUBSCRIBE"} />
                     </Grid>
                 </VStack>
                 <VStack align={"start"} id="listStack" padding={"40px 15%"} fontSize={"14px"}>
-                    <Grid templateColumns={"1.5fr 2fr 1fr 1fr"}>
+                    <Grid templateColumns={{ base: '1fr', md: "1.5fr 2fr", lg: '1.5fr 2fr 1fr 1fr' }}>
                         <VStack align={'flex-start'} divider={<StackDivider w={"50px"} borderColor='#ED7745' />}>
                             <Text fontWeight={"medium"}>The Company:</Text>
                             <Grid templateColumns={"1fr 1fr"} gap={"5%"} color={"#2f4858"}>
@@ -70,7 +70,7 @@ export const Footer = () => {
                     <Grid gridTemplateColumns={"2.5fr 1fr"} width="90%">
                         <VStack align={"start"} divider={<StackDivider w={"50px"} borderColor='#ED7745' />}>
                             <Text fontWeight={"medium"}>Connect With Us:</Text>
-                            <Grid height={"30px"} alignContent="center" width="50%" gridTemplateColumns={"1fr 1fr .9fr 1.2fr 1fr 1.2fr 1fr 1fr"}>
+                            <Grid mt={{ base: "25px", lg: "0px" }} height={"30px"} alignContent="center" width="50%" gridTemplateColumns={{ base: "repeat(2,3fr)", md: "repeat(4,1fr)", lg: "1fr 1fr .9fr 1.2fr 1fr 1.2fr 1fr 1fr" }}>
                                 <GridItem height={"20px"}>
                                     <svg style={style} className="svg" height={"100%"} xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 25 25"><path id="Call" d="M21.24,25H21A24.44,24.44,0,0,1,7.16,18.74h0l-.87-.87A24.44,24.44,0,0,1,0,4,2.08,2.08,0,0,1,1.33,1.83L5.82.09a1.29,1.29,0,0,1,1.6.59l3.15,5.79A1.3,1.3,0,0,1,10.35,8L7.47,10.83a.29.29,0,0,0,0,.38,29.66,29.66,0,0,0,2.89,3.6,27.16,27.16,0,0,0,3.48,2.77.29.29,0,0,0,.37,0L17,14.65a1.3,1.3,0,0,1,1.54-.23l5.79,3.15a1.3,1.3,0,0,1,.59,1.6l-1.74,4.49A2.08,2.08,0,0,1,21.24,25ZM7.85,18a23.43,23.43,0,0,0,13.26,6,1.08,1.08,0,0,0,1.13-.69L24,18.82a.29.29,0,0,0-.13-.36L18.05,15.3a.29.29,0,0,0-.35.05l-2.83,2.88a1.28,1.28,0,0,1-1.64.17,28.12,28.12,0,0,1-3.62-2.89,30.65,30.65,0,0,1-3-3.75,1.29,1.29,0,0,1,.16-1.65L9.65,7.29a.29.29,0,0,0,.05-.35L6.54,1.15A.29.29,0,0,0,6.18,1L1.69,2.76A1.08,1.08,0,0,0,1,3.89,23.44,23.44,0,0,0,7,17.16Z" /></svg>
                                 </GridItem>
