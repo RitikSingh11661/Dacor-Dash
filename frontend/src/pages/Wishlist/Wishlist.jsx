@@ -1,19 +1,20 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-// import { useDispatch, useSelector } from "react-redux";
-// import { getWishlist } from "../../redux/Wishlist/actions";
+import { getWishlist } from "../../redux/Wishlist/actions";
 import WishlistCard from "./WishlistCard";
 import { Box, Grid } from "@chakra-ui/react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Wishlist = () => {
   
-  const [data, setData] = useState([]);
+  const dispatch = useDispatch();
+  const wishlist = useSelector((store) => store.WishlistReducer.wishlist);
+  console.log(wishlist)
+  const navigate = useNavigate();
 
   useEffect(() => {
-    axios
-      .get(`https://talented-teal-hosiery.cyclic.app/product`)
-      .then((res) => console.log(res.data.msg));
-    
+   dispatch(getWishlist()) 
   }, []);
 
 
@@ -30,7 +31,7 @@ const Wishlist = () => {
   return (
     <div>
       <p>
-        <span>My Wishlist</span> {data} items
+        <span>My Wishlist</span>
       </p>
       <div>
         {/* {data.map((item) => (
@@ -38,13 +39,21 @@ const Wishlist = () => {
             <WishlistCard {...item} />
           </div>
         ))} */}
-        <Box>
-          {/* <Grid templateColumns={"repeat(4, 1fr)"} gap={7} w="95%" m="auto">
+        {/* <Box>
+          <Grid templateColumns={"repeat(4, 1fr)"} gap={7} w="95%" m="auto">
             {data.map((ele) => (
               <WishlistCard key={ele._id} {...ele} />
             ))}
-          </Grid> */}
-        </Box>
+          </Grid>
+        </Box> */}
+
+        {wishlist?.map((item) => {
+          return (
+            <div>
+              <WishlistCard key={item._id} {...item} />
+            </div>
+          );
+        })}
       </div>
     </div>
   );

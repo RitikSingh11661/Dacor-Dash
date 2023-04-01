@@ -1,7 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import Pages from "../wrappers/userWrapper";
 import { Admin } from "../pages/Admin";
-
 export const Allroutes = () => {
     return (
         <Routes>
@@ -19,4 +18,4 @@ export const Allroutes = () => {
             <Route path="*" element={<Pages.NotFoundLayout/>} />
         </Routes>
     )
-}
+ }   

@@ -48,9 +48,9 @@ const ShippingDetailsCard = ({
   return (
     <div id={styles.card}>
       <div>
-        <h1>
+        <p>
           {firstname} {lastname}
-        </h1>
+        </p>
         <p>{address1}</p>
         <p>{city}</p>
         <p>{phone}</p>
