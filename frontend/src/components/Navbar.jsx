@@ -58,8 +58,10 @@ export const Navbar = () => {
                                 </VStack>
                                 :
                                 <VStack spacing={0}>
-                                    <Text>Log In</Text>
-                                    <Text>Sign Up</Text>
+                                    {/* <Text>Log In</Text>
+                                    <Text>Sign Up</Text> */}
+                                    <Link to='/login'>Log In</Link>
+                                    <Link to='/signup'>Sign Up</Link>
                                 </VStack>
                         }
                     </Box>
