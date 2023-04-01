@@ -11,6 +11,8 @@ import Wishlist from '../pages/Wishlist/Wishlist';
 import Address from '../pages/Address/Address';
 import Payment from '../pages/Payment/Payment';
 import { NotFound } from '../pages/NoteFound';
+import TrackOrder from '../pages/TrackOrder/TrackOrder';
+import OrderSuccessfull from '../pages/OrderSuccessfull';
 
 const withLayout = (WrappedComponent) => {
   return () => (
@@ -33,6 +35,8 @@ const Pages= {
   WishlistLayout: withLayout(Wishlist),
   AddressLayout: withLayout(Address),
   PaymentLayout: withLayout(Payment),
+  TrackOrderLoayout:withLayout(TrackOrder),
+  OrderSuccessfulLoayout:withLayout(OrderSuccessfull),
   NotFoundLayout: withLayout(NotFound),
 };
 
