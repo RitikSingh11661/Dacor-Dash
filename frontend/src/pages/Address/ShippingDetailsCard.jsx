@@ -62,7 +62,7 @@ const ShippingDetailsCard = ({
             style={{
               width: "100px",
               padding: "5px 8px",
-              backgroundColor: "rgb(75,86,102)",
+              backgroundColor: "#ED7745",
               borderRadius: "8px",
               marginTop: "10px",
               color: "white",

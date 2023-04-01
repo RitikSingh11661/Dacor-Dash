@@ -33,13 +33,18 @@ import CreditCardIcon from "@mui/icons-material/CreditCard";
 import { useNavigate } from "react-router-dom";
 import Stepper from "../../components/Stepper";
 import ShippingDetailsCard from "../Address/ShippingDetailsCard";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const Payment = () => {
   const [isButLoading, setIsButLoading] = useState(false);
  const address = useSelector((store) => store.shippingReducer.address);
   const navigate = useNavigate();
-console.log(address)
+  const dispatch = useDispatch();
+ 
+  console.log(address)
+  useEffect(() => {
+    dispatch(getRequestAddress());
+  },[])
   const handlePay = () => {
     setIsButLoading(true);
     setTimeout(() => {
