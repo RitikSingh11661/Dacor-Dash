@@ -93,17 +93,7 @@ const ProductCard = ({ image, desc, brand, oriPrice, category, disPrice }) => {
               </Text>
               <Text>₹{oriPrice}</Text>
               <Text color={"#999999"}>|EMI From ₹504</Text>
-                ADD TO COMPARE
-              </Button>
-              <Link to={`/product/${id}`}>
-              <Button
-                fontSize="0.7rem"
-                borderRadius="none"
-                colorScheme="orange"
-              >
-                VIEW PRODUCT
-              </Button>
-              </Link>
+      
             </HStack>
             {
               <HStack
