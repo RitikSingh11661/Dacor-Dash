@@ -73,6 +73,7 @@ const OrderSummary = ({ totalItem, sum, couponDiscount }) => {
       >
         CONTINUE SHOPPING
       </Button>
+      <Link to='/address'>
       <Button
         fontSize="0.7rem"
         borderRadius="none"
@@ -81,6 +82,8 @@ const OrderSummary = ({ totalItem, sum, couponDiscount }) => {
       >
         CHECKOUT
       </Button>
+      </Link>
+     
       </HStack>
     </Box>
   );

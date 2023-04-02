@@ -1,6 +1,6 @@
 import { Button, Spinner, VStack } from "@chakra-ui/react";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./Payment/Payment.module.css";
 const OrderSuccessfull = () => {
   const navigate = useNavigate();
@@ -34,6 +34,7 @@ const OrderSuccessfull = () => {
           />
         </div>
 
+        <Link to='/'>
         <button
           className={styles.bookbtn3}
           onClick={handlePay}
@@ -51,6 +52,7 @@ const OrderSuccessfull = () => {
             />
           )}
         </button>
+        </Link>      
       </VStack>
     </div>
   );
