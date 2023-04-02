@@ -24,7 +24,7 @@ import {RxCross2} from "react-icons/rx"
 import CartAccordion from '../components/CartAccordion';
 import OrderSummary from '../components/OrderSummary';
 export const Cart = () => {
-  
+
   return (
     <div>
       <Box p="0 15%" mt="20px" fontFamily={`"Mr Eaves XL Modern",sans-serif`}>
@@ -32,7 +32,7 @@ export const Cart = () => {
           <Box>
             <HStack justifyContent="space-between">
               <Box></Box>
-              <Box border="1px solid yellow" p="2.5">
+              <Box border="1px solid #D69E2E" p="2.5">
                 <HStack justifyContent="space-around" gap="10">
                   <HStack>
                     <GoLocation />
@@ -71,7 +71,8 @@ export const Cart = () => {
           </Box>
           <Box>
             <Divider />
-            <HStack fontSize="14px"  justifyContent="space-between" p="2.5">
+            <Box display={{base:"none",md:"none",lg:"block"}}>
+            <HStack fontSize="14px"   justifyContent="space-between" p="2.5" >
               <Box w="23%">
               <Text >PRODUCTS</Text>
               </Box>
@@ -79,10 +80,11 @@ export const Cart = () => {
               <Text >QUANTITY</Text>
               <Text>TOTAL</Text>
             </HStack>
+            </Box>
             <Divider />
             <Box w="100%" h="max-content"  mt="10px">
               <HStack justifyContent="space-around">
-                <Box width="35%" h="100%" border="1px solid red" >
+                <Box width="35%" h="100%" >
                  <HStack >
                  <VStack  >
                     <Image shadow={"lg"}
@@ -96,7 +98,7 @@ export const Cart = () => {
                       borderRadius="10px"
                       color="#ffffff"
                       fontSize="0.6rem"
-                      px="10px"
+                      px="0.6rem"
                       bg="#fD7745"
                     >
                       {" "}
@@ -177,8 +179,6 @@ export const Cart = () => {
           <Box
           w={{ md: "50%" }}
           h={{ md: "25rem" }}
-          overflow={{ md: "hidden" }}
-          overflowY={{ md: "scroll" }}
         >
           <CartAccordion />
           <OrderSummary

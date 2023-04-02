@@ -26,26 +26,27 @@ export const Products = () => {
         if (products?.length === 0 || location) {
             const getProductsParams = {
                 params: {
-                    category: searchParams.getAll("filter"),
-                    _sort: "price",
-                    _orderBy: searchParams.get("sort"),
+                    category: searchParams.getAll("category"),
+                    brand:searchParams.getAll("brand"),
+                    _sort: "originalPrice",
+                    _orderBy: searchParams.get("orderBy"),
                 }
             }
-            dispatch(getProducts())
+            dispatch(getProducts(getProductsParams))
         }
     }, [location.search])
 
     return (
         <div>
             <Filter_Sort />
-            <Box m="auto" p="0 15%" >
+            <Box m="auto" p="0 14%" >
                 <Flex flexWrap={"wrap"} justifyContent="center" gap={2} rowGap={"-14"} >
                     {
                         products?.length > 0 &&
                         products?.map((prod) => (
                             <Box key={prod.id}>
                                 <ProductCard
-
+                                    id={prod.id}
                                     image={prod.img}
                                     desc={prod.description}
                                     brand={prod.brand}

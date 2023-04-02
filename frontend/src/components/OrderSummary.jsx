@@ -62,7 +62,7 @@ const OrderSummary = ({ totalItem, sum, couponDiscount }) => {
           </Button>
         ) : null}
       </Link> */}
-      <HStack spacing="5">
+      <HStack spacing="8" mt="3">
       <Button
         fontWeight="none"
         borderRadius="none"
