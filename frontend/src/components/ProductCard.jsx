@@ -5,7 +5,7 @@ import {FiHeart} from "react-icons/fi"
 import {FcLike} from "react-icons/fc"
 import styles from "./ProductCard.module.css"
 import { useSelector } from 'react-redux'
-const ProductCard = ( {image,desc,brand,oriPrice, category, disPrice}) => {
+const ProductCard = ( {id,image,desc,brand,oriPrice, category, disPrice}) => {
   const loading = useSelector((store)=>store.ProductReducer.loading);
  
     const [show,setShow] = useState(false)
@@ -90,6 +90,7 @@ const ProductCard = ( {image,desc,brand,oriPrice, category, disPrice}) => {
               >
                 ADD TO COMPARE
               </Button>
+              <Link to={`/product/${id}`}>
               <Button
                 fontSize="0.7rem"
                 borderRadius="none"
@@ -97,6 +98,7 @@ const ProductCard = ( {image,desc,brand,oriPrice, category, disPrice}) => {
               >
                 VIEW PRODUCT
               </Button>
+              </Link>
             </HStack>
           }
           <HStack

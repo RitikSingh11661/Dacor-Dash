@@ -6,42 +6,62 @@ import { useSearchParams } from 'react-router-dom';
 const Filter_Sort = () => {
     const [searchParams,setSearchParams]=useSearchParams();
 
-    const searchParamsfilter = searchParams.getAll("filter")
-    const [sortVal,setSortVal] = useState(searchParams.get("sort") || "")
-    const [filterVal,setFilterVal] = useState(searchParamsfilter||[])
-    
-   
-    const [order,setOrder] = useState("asc");
+    const searchParamsCategoryfilter = searchParams.getAll("category")
+    const searchParamsBrandfilter = searchParams.getAll("brand")
+
+    const [orderByVal,setOrderByVal] = useState(searchParams.get("orderBy") ||"")
+    const [categoryVal,setCategoryVal] = useState(searchParamsCategoryfilter||[])
+    const [brandVal,setBrandVal] = useState(searchParamsBrandfilter||[])
 
     const [showCategory,setShowCategory] = useState(false)
     const [showBrand,setShowBrand]=useState(false)
     const [showSort,setShowSort]=useState(false)
 
-    const handleFilter = (value)=>{
-        setFilterVal(value);
+    const handleCategoryFilter = (value)=>{
+        setCategoryVal(value);
     }
 
+    const handleBrandFilter = (value)=>{
+      setBrandVal(value);
+  }
+
     const handleSort = (value)=>{
-        setSortVal(value);
+        setOrderByVal(value);
     };
 
     useEffect(()=>{
         let params = {};
 
-        if(filterVal.length && sortVal.length){
-            params.filter = filterVal;
-            params.sort = sortVal;
+        if(categoryVal.length && orderByVal.length && brandVal.length){
+            params.category = categoryVal;
+            params.orderBy =orderByVal;
+            params.brand=brandVal;
         }
-        else if(filterVal.length){
-            params.filter = filterVal;
+        else if(categoryVal.length && orderByVal.length){
+          params.category = categoryVal;
+          params.orderBy =orderByVal;
         }
-        else if(sortVal.length){
-            params.sort = sortVal;
+        else if(orderByVal.length && brandVal.length){
+          params.orderBy =orderByVal;
+          params.brand=brandVal;
+        }
+        else if(brandVal.length && categoryVal.length){
+          params.category = categoryVal;
+          params.brand=brandVal;
+        }
+        else if(categoryVal.length){
+          params.category = categoryVal;
+        }
+        else if(brandVal.length){
+          params.brand=brandVal;
+        }
+        else if(orderByVal.length){
+          params.orderBy =orderByVal;
         }
 
         setSearchParams(params)
 
-    },[filterVal,sortVal])
+    },[orderByVal,categoryVal,brandVal])
 
     const handleMouseEnterCategory=()=>{
         setShowCategory(true)
@@ -81,7 +101,7 @@ const Filter_Sort = () => {
           <HStack mt="5px">
             <Box onMouseEnter={handleMouseEnterCategory}
           onMouseLeave={handleMouseLeaveCategory}>
-              <CheckboxGroup value={filterVal} onChange={handleFilter} colorScheme="orange">
+              <CheckboxGroup value={categoryVal} onChange={handleCategoryFilter} colorScheme="orange">
                 <Stack direction={["column"]}>
                   <Button
                     fontWeight="none"
@@ -125,7 +145,7 @@ const Filter_Sort = () => {
             </Box>
             <Box onMouseEnter={handleMouseEnterBrand}
           onMouseLeave={handleMouseLeaveBrand}>
-              <CheckboxGroup value={filterVal} onChange={handleFilter} colorScheme="orange">
+              <CheckboxGroup value={brandVal} onChange={handleBrandFilter} colorScheme="orange">
                 <Stack direction={["column"]}>
                   <Button
                     fontWeight="none"
@@ -197,7 +217,7 @@ const Filter_Sort = () => {
                   </Button>
                   <Box p="2%"  visibility={showSort?"visible":"hidden"}>
                  <Stack p="3" mt="-8px " bgColor='white' zIndex="10" maxW="200%" position='absolute' maxH='200px' overflow='scroll' border="1px solid black">
-                 <RadioGroup value={sortVal} onChange={handleSort} colorScheme={"orange"}>
+                 <RadioGroup value={orderByVal} onChange={handleSort} colorScheme={"orange"}>
                 <Stack direction="column">
                 <Radio value="">
                     Recommended
