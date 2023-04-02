@@ -24,7 +24,7 @@ export const getWishlist =()=> (dispatch) => {
     .get(`https://talented-teal-hosiery.cyclic.app/wishlist`, {
       headers: {
         token:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDI2ZWQ2MGIwZWY4ZjBjNmM1ZTM5ODQiLCJpYXQiOjE2ODAzNTk3NTUsImV4cCI6MTY4MDM2MzM1NX0.Uxw4gCFTyYKPiqlBQZ9FnvD9xKdaHHEGxfTjX93blHc",
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDI2ZWQ2MGIwZWY4ZjBjNmM1ZTM5ODQiLCJpYXQiOjE2ODA0MTY2NTMsImV4cCI6MTY4MDQyMDI1M30.tRsJZW5wGojmZQwnraRQceIaZVEoThGA9qz-Bi8szyU",
       },
     })
     .then((res) => dispatch(wishlistGet(res.data.msg)))

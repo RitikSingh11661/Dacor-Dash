@@ -14,7 +14,7 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import { FiHeart } from "react-icons/fi";
+
 import { FcLike } from "react-icons/fc";
 import { useSelector } from "react-redux";
 
@@ -107,7 +107,7 @@ const ProductCard = ({ image, desc, brand, oriPrice, category, disPrice }) => {
                   border={"3px solid #fD7745"}
                   bg="none"
                 >
-                  ADD TO COMPARE
+                  Remove
                 </Button>
                 <Button
                   fontSize="0.7rem"
@@ -128,28 +128,9 @@ const ProductCard = ({ image, desc, brand, oriPrice, category, disPrice }) => {
               right="18px"
               pos="absolute"
             >
-              <Button
-                fontWeight="none"
-                borderRadius="none"
-                color="#fD7745"
-                fontSize="0.7rem"
-                px="10px"
-                border={"2px solid #fD7745"}
-                bg="none"
-              >
-                {" "}
-                <FiHeart color="#fD7745" size="25px" />
-                Add To Wishlist
-              </Button>
+             
             </HStack>
-            <Box
-              visibility={!show ? "visible" : "hidden"}
-              top="20px"
-              right="25px"
-              pos="absolute"
-            >
-              <FiHeart color="#fD7745" size="25px" />
-            </Box>
+            
           </Box>
         </Skeleton>
       </Center>
