@@ -23,8 +23,7 @@ export const SingleProduct = () => {
   const {image,category,name,brand,originalPrice,discountPrice} =data;
   
   useEffect(() => {
-    
-        dispatch(getSingleProductData(id))   
+        dispatch(getSingleProductData(id))
 }, []);
     const token = jwtDecode(localStorage.getItem('token'))
     
