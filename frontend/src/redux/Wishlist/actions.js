@@ -69,3 +69,8 @@ export const removeWishlist = (id) => async (dispatch) => {
 };
 
 
+
+
+
+
+
