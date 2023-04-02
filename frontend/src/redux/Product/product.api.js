@@ -2,8 +2,8 @@ import axios from "axios"
 
 export const getProductsApi = async (params) =>{
     try{
-        let response =await axios.get(`https://universal-mall-api.onrender.com/products`,params)
-        
+        let response =await axios.get(`https://talented-teal-hosiery.cyclic.app/product`,params)
+       
         return response
     }
     catch(err){

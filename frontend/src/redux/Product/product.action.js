@@ -24,7 +24,8 @@ export const getProducts = (params)=>async (dispatch)=>{
     try{
        let response = await getProductsApi(params);
        if(response){
-        dispatch(productSuccess(response.data))
+       
+        dispatch(productSuccess(response.data.msg))
        }
     }
     catch(err){
