@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { Badge, Box, Button, Container, Flex, HStack, Heading, Image, List, ListItem, SimpleGrid, Skeleton, Stack, StackDivider, Text, VStack, useColorModeValue } from '@chakra-ui/react';
 import {MdLocalShipping} from "react-icons/md"
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getSingleProductData } from '../redux/SingleProduct/SProduct.action';
 import {FiHeart} from "react-icons/fi"
@@ -9,6 +9,8 @@ import {MdCompare} from "react-icons/md"
 import {SiAdguard} from "react-icons/si"
 import { GoLocation } from 'react-icons/go';
 import {AiOutlineDown } from 'react-icons/ai';
+import jwtDecode from "jwt-decode";
+import { addCart } from '../redux/Cart/cart.action';
 
 export const SingleProduct = () => {
     const {id} =useParams();
@@ -17,13 +19,33 @@ export const SingleProduct = () => {
   const dispatch = useDispatch();
 
   const data = useSelector((store)=>store.SingleProductReducer.singleProductData);
-console.log(data)
- 
+
+  const {image,category,name,brand,originalPrice,discountPrice} =data;
+  
   useEffect(() => {
-    if(data){
-        dispatch(getSingleProductData(id))
-    }
+    
+        dispatch(getSingleProductData(id))   
 }, []);
+    const token = jwtDecode(localStorage.getItem('token'))
+    
+    const addCartItems = async()=>{
+       if(token.userId){
+        let payload = {
+          userId:token.userId,
+          prodId:id,  
+          image,
+          category,
+          name,
+          brand,
+          originalPrice,
+          discountPrice,
+          quantity:1
+        }
+        dispatch(addCart(payload))
+         
+       }
+       
+    }
 
     return (
       <Container maxW={"5xl"} >
@@ -40,17 +62,17 @@ console.log(data)
           
           >
             <Heading fontSize="1.5rem" color="#2f4858">
-              Arabia Solid Wood 6 Seater Dining Table
+              {name}
             </Heading>
             <HStack>
-              <Text>By Urban Ladder</Text>
+              <Text>{brand}</Text>
               <Badge borderRadius="30px">Best Seller</Badge>
             </HStack>
             <Image
               rounded={"md"}
               alt={"product image"}
               src={
-                "https://www.ulcdn.net/images/products/312895/slide/666x363/Arabia_Dining_Table_TK_1.jpg?1609230336"
+                image[0]
               }
               fit={"cover"}
               align={"center"}
@@ -63,7 +85,7 @@ console.log(data)
                 borderRadius="md"
                 alt={"product image"}
                 src={
-                  "https://www.ulcdn.net/images/products/312898/slide_thumb/Arabia_Dining_Table_TK_4.jpg?1609230340"
+                    image[1]
                 }
                 fit={"cover"}
                 align={"center"}
@@ -75,7 +97,7 @@ console.log(data)
                 alt={"product image"}
                 borderRadius="md"
                 src={
-                  "https://www.ulcdn.net/images/products/312898/slide_thumb/Arabia_Dining_Table_TK_4.jpg?1609230340"
+                  image[2]
                 }
                 fit={"cover"}
                 align={"center"}
@@ -87,7 +109,7 @@ console.log(data)
                 borderRadius="md"
                 alt={"product image"}
                 src={
-                  "https://www.ulcdn.net/images/products/312898/slide_thumb/Arabia_Dining_Table_TK_4.jpg?1609230340"
+                 image[3]
                 }
                 fit={"cover"}
                 align={"center"}
@@ -99,7 +121,7 @@ console.log(data)
                 borderRadius="md"
                 alt={"product image"}
                 src={
-                  "https://www.ulcdn.net/images/products/312898/slide_thumb/Arabia_Dining_Table_TK_4.jpg?1609230340"
+                 image[0]
                 }
                 fit={"cover"}
                 align={"center"}
@@ -110,7 +132,7 @@ console.log(data)
             <Box>
                 <Text
                   fontSize={{ base: "16px", lg: "18px" }}
-                  color={useColorModeValue("yellow.500", "yellow.300")}
+                  color={"#ED7745"}
                   fontWeight={"500"}
                   textTransform={"uppercase"}
                   mb={"4"}
@@ -123,7 +145,7 @@ console.log(data)
                     <Text as={"span"} fontWeight={"bold"}>
                       Category:
                     </Text>{" "}
-                    Silver Brass Ring
+                    {category}
                   </ListItem>
                   <ListItem>
                     <Text as={"span"} fontWeight={"bold"}>
@@ -215,27 +237,28 @@ console.log(data)
                   SALE
                 </Box>
               </HStack>
-              <Text fontSize="0.8rem" texAlign="left">
+              <Text fontSize="0.8rem" textAlign="left">
                 * All discounts are dynamic and can change at any time.
               </Text>
             </VStack>
             <HStack p="1.5rem" justifyContent="space-around">
               <Text color={"#969696"} textDecoration="line-through">
-                MRP₹31,799
+                MRP₹{originalPrice}
               </Text>
               <VStack>
-                <Text>₹18,443</Text>
+                <Text>₹{discountPrice}</Text>
                 <Text color={"#969696"} fontSize="0.7rem">
                   (inclusive of all taxes)
                 </Text>
               </VStack>
             </HStack>
 
+            <Link to="/cart">
             <Button
               rounded={"none"}
               borderRadius="5px"
               w={"full"}
-             
+              onClick={addCartItems}
               size={"lg"}
               py={"7"}
               bg={"#ED7745"}
@@ -248,6 +271,7 @@ console.log(data)
             >
               Add to cart
             </Button>
+            </Link>
             <Box border="1px solid #D69E2E">
                 <HStack  gap="10" p="1" alignItems="flex-start">
                   <HStack>

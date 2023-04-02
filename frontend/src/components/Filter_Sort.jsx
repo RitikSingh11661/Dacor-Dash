@@ -120,22 +120,22 @@ const Filter_Sort = () => {
                  <Text color="#fD7745" textAlign={"left"} fontSize="13px">
                    Primary Category
                  </Text>
-                 <Checkbox  value="jwellery">
-                    Jwellery
+                 <Checkbox  value="Sofa">
+                   Sofa
                   </Checkbox>
-                  <Checkbox  value="Evok">
-                    Evok
+                  <Checkbox  value="Recliners">
+                    Recliners
                   </Checkbox>
-                  <Checkbox  value="grocery&decor">
-                    Grocery&Decor
+                  <Checkbox  value="Beds">
+                    Beds
                   </Checkbox>
-                  <Checkbox  value="electronics">
-                    Electronics
+                  <Checkbox  value="Mattress">
+                    Mattress
                   </Checkbox>
-                  <Checkbox  value="watchbands">
-                    Bedsheets
+                  <Checkbox  value="furn">
+                    furn
                   </Checkbox>
-                  <Checkbox  value="Hard Cover">
+                  <Checkbox  value="Curtains">
                     Curtains
                   </Checkbox>
                  </Stack>
@@ -164,29 +164,29 @@ const Filter_Sort = () => {
                  <Text color="#fD7745" textAlign={"left"} fontSize="13px">
                    Brand Name
                  </Text>
-                  <Checkbox value="MANSIYAORANGE">
-                  MANSIYAORANGE
+                  <Checkbox value="Durien">
+                  Durien
                   </Checkbox>
-                  <Checkbox value="Vighnaharta">
-                  Vighnaharta
+                  <Checkbox value="Evok">
+                  Evok
                   </Checkbox>
-                  <Checkbox  value="Mahi">
-                  Mahi
+                  <Checkbox  value="LazeOn">
+                  LazeOn
                   </Checkbox>
-                  <Checkbox value="Jewels Galaxy">
-                  Jewels Galaxy
+                  <Checkbox value="SleepyHead">
+                  SleepyHead
                   </Checkbox>
-                  <Checkbox value="STYLISH TEENS">
-                  STYLISH TEENS
+                  <Checkbox value="Febonic">
+                  Febonic
                   </Checkbox>
-                  <Checkbox value="SILVER SHINE">
-                  SILVER SHINE
+                  <Checkbox value="Arra">
+                  Arra
                   </Checkbox>
-                  <Checkbox value="Zcarina">
-                  Zcarina
+                  <Checkbox value="Trevi">
+                  Trevi
                   </Checkbox>
-                  <Checkbox value="Blue Shine">
-                  Blue Shine
+                  <Checkbox value="Amore">
+                  Amore
                   </Checkbox>
                  </Stack>
                   </Box>

@@ -33,7 +33,7 @@ const ProductCard = ( {id,image,desc,brand,oriPrice, category, disPrice}) => {
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
-          <Link to={`/product/1`}>
+          <Link to={`/product/${id}`}>
             <Image w="304px" height={"300px"} objectFit={"cover"} src={image} />
           </Link>
           <Stack pt="2" spacing="0.5" fontSize="13px">
