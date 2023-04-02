@@ -28,14 +28,14 @@ export const Login = () => {
         localStorage.setItem("token",res.data.token);
             toast({
               title: res.data.msg,
-              description: ` Welcome ${userType=='user'?'User':'Admin'} ${user.email}`,
+              description: ` Welcome ${userType==='user'?'User':'Admin'} ${user.email}`,
               status: "success",
               duration: 3000,
               position: "top",
               isClosable: true,
             });
             dispatch(setLogin);
-            navigate(userType=='admin'?'/admin':comingFrom, { replace: true })
+            navigate(userType==='admin'?'/admin':comingFrom, { replace: true })
       })     
     } catch (err) {
         console.log('err',err)
