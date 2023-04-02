@@ -6,12 +6,13 @@ import {FiUserX} from 'react-icons/fi';
 
 const ManageAdmins = () => {
   const { isLoadingAdminList, isErrorAdminList, admins } = useSelector(store => store.AdminReducer);
+  console.log('admins',admins)
   const dispatch = useDispatch();
   const toast = useToast();
 
   const handleDelete =(admin) => {
     try {
-      dispatch(deleteAdmin(admin.id));
+      dispatch(deleteAdmin(admin._id));
       toast({
         title: 'Admin Deleted',
         description: `${admin.name} has been deleted successfully`,

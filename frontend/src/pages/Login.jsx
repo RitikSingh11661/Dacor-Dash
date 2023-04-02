@@ -58,7 +58,7 @@ export const Login = () => {
           Authorization: `Bearer ${accessToken}`,
         },
       }).then((response) =>{
-        const user={email:response.res.data.email,password:'1234'};
+        const user={email:response.data.email,password:'1234'};
         handleSubmit(1,user);
       }).catch((error) => console.log("error while login", error));
     } catch (error) {
