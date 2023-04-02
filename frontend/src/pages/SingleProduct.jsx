@@ -1,28 +1,91 @@
-import React from 'react'
-import { Box, Button, Container, Flex, Heading, Image, List, ListItem, SimpleGrid, Skeleton, Stack, StackDivider, Text, VStack, useColorModeValue } from '@chakra-ui/react';
+import React, { useEffect } from 'react'
+import { Badge, Box, Button, Container, Flex, HStack, Heading, Image, List, ListItem, SimpleGrid, Skeleton, Stack, StackDivider, Text, VStack, useColorModeValue } from '@chakra-ui/react';
 import {MdLocalShipping} from "react-icons/md"
+import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { getSingleProductData } from '../redux/SingleProduct/SProduct.action';
 
 export const SingleProduct = () => {
-  return (
+    const {id} =useParams();
+    const loading = useSelector((store)=>store.SingleProductReducer.loading);
+  
+  const dispatch = useDispatch();
+
+  const data = useSelector((store)=>store.SingleProductReducer.singleProductData);
+console.log(data)
+ 
+  useEffect(() => {
+    if(data){
+        dispatch(getSingleProductData(id))
+    }
+}, []);
+
+    return (
         <Container maxW={'5xl'}>
             <SimpleGrid
                 columns={{ base: 1, lg: 2 }}
                 spacing={{ base: 8, md: 10 }}
-                py={{ base: 18, md: 24 }}>
-                <Flex >
-                    <Skeleton borderRadius="md" fadeDuration={1}>
+                py={{ base: 18, md: 24 }}
+                border="1px solid red"
+                >
+                <Flex direction={"column"} rowGap="3" w={{base:"",md:"",lg:"600px"}} border="1px solid red">
+                    <Heading fontSize="1.5rem" color="#2f4858">Arabia Solid Wood 6 Seater Dining Table</Heading>
+                    <HStack>
+                       <Text>By Urban Ladder</Text>
+                       <Badge borderRadius="30px">Best Seller</Badge>
+                    </HStack>
                     <Image
                         rounded={'md'}
                         alt={'product image'}
-                        src={"https://assetscdn1.paytm.com/images/catalog/product/J/JE/JEWMANSIYAORANGMANS31895221C53E46/1568718205220_0..jpg?imwidth=282&impolicy=hq"}
+                        src={"https://www.ulcdn.net/images/products/312895/slide/666x363/Arabia_Dining_Table_TK_1.jpg?1609230336"}
                         fit={'cover'}
                         align={'center'}
                         w={'100%'}
-                        h={{ base: '100%', sm: '400px', lg: '500px' }}
+                        h={{ base: '100%', sm: '300px', lg: '300px' }}
                     />
-                    </Skeleton>
+                    <HStack>
+
+                    <Image
+                        rounded={'md'}
+                        alt={'product image'}
+                        src={"https://www.ulcdn.net/images/products/312898/slide_thumb/Arabia_Dining_Table_TK_4.jpg?1609230340"}
+                        fit={'cover'}
+                        align={'center'}
+                        w={'100%'}
+                        h={{ base: '100%', sm: '300px', lg: '300px' }}
+                    />
+                    <Image
+                        rounded={'md'}
+                        alt={'product image'}
+                        src={"https://www.ulcdn.net/images/products/312898/slide_thumb/Arabia_Dining_Table_TK_4.jpg?1609230340"}
+                        fit={'cover'}
+                        align={'center'}
+                        w={'100%'}
+                        h={{ base: '100%', sm: '300px', lg: '300px' }}
+                    />
+                    <Image
+                        rounded={'md'}
+                        alt={'product image'}
+                        src={"https://www.ulcdn.net/images/products/312898/slide_thumb/Arabia_Dining_Table_TK_4.jpg?1609230340"}
+                        fit={'cover'}
+                        align={'center'}
+                        w={'100%'}
+                        h={{ base: '100%', sm: '300px', lg: '300px' }}
+                    />
+                    <Image
+                        rounded={'md'}
+                        alt={'product image'}
+                        src={"https://www.ulcdn.net/images/products/312898/slide_thumb/Arabia_Dining_Table_TK_4.jpg?1609230340"}
+                        fit={'cover'}
+                        align={'center'}
+                        w={'5%'}
+                        h={{ base: '5%', sm: '300px', lg: '300px' }}
+                    />
+
+                    </HStack>
+        
                 </Flex>
-                <Stack spacing={{ base: 6, md: 10 }}>
+                <Stack w={{base:"",md:"",lg:"65%"}} ml={{base:"",md:"",lg:"120px"}} spacing={{ base: 6, md: 10 }}>
                     <Box as={'header'}>
                         <Heading
                             lineHeight={1.1}
