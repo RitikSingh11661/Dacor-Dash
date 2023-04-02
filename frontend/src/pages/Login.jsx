@@ -23,7 +23,7 @@ export const Login = () => {
     }
     const userType=user?.email?.includes('admin')?'admin':'user';
     try {
-      axios.post(`https://talented-teal-hosiery.cyclic.app/${userType}/login`, JSON.stringify(user),{headers: {'Content-Type':'application/json'}})
+      axios.post(`${process.env.REACT_APP_API_AI}/${userType}/login`, JSON.stringify(user),{headers: {'Content-Type':'application/json'}})
       .then((res)=>{
         localStorage.setItem("token",res.data.token);
             toast({

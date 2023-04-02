@@ -44,7 +44,7 @@ export const Signup = () => {
     if(typeof e !== 'number'){
       e.preventDefault();
     }
-    axios.post('https://talented-teal-hosiery.cyclic.app/user/add', JSON.stringify(user), {
+    axios.post(`${process.env.REACT_APP_API_AI}/user/add`, JSON.stringify(user), {
       headers: {
         'Content-Type': 'application/json'
       }
