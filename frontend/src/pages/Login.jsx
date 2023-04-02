@@ -21,72 +21,33 @@ export const Login = () => {
     if(typeof e !== 'number'){
       e.preventDefault();
     }
-    axios.post('https://talented-teal-hosiery.cyclic.app/user/login', JSON.stringify(user), {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }).then((res) => {
-      localStorage.setItem("token",res.data.token);
+    const userType=user?.email?.includes('admin')?'admin':'user';
+    try {
+      axios.post(`https://talented-teal-hosiery.cyclic.app/${userType}/login`, JSON.stringify(user),{headers: {'Content-Type':'application/json'}})
+      .then((res)=>{
+        localStorage.setItem("token",res.data.token);
+            toast({
+              title: res.data.msg,
+              description: ` Welcome ${userType=='user'?'User':'Admin'} ${user.email}`,
+              status: "success",
+              duration: 3000,
+              position: "top",
+              isClosable: true,
+            });
+            dispatch(setLogin);
+            navigate(userType=='admin'?'/admin':comingFrom, { replace: true })
+      })     
+    } catch (err) {
+        console.log('err',err)
         toast({
-          title: res.data.msg,
-          description: ` Welcome ${user.email}`,
-          status: "success",
+          title: "Wrong Creadentials.",
+          description: `Please register ${user.email}`,
+          status: "error",
           duration: 3000,
           position: "top",
           isClosable: true,
         });
-        dispatch(setLogin);
-        navigate(comingFrom, { replace: true })
-    }).catch((err) =>{ 
-      console.log('err',err)
-      toast({
-        title: "Wrong Creadentials.",
-        description: `Please register ${email}`,
-        status: "error",
-        duration: 3000,
-        position: "top",
-        isClosable: true,
-      });
-      })
-
-    // let checkAdmin = admins.find(el => el.email === email && el.password === password);
-    // if (checkAdmin) {
-    //   localStorage.setItem("adminId", checkAdmin.id);
-    //   toast({
-    //     title: "Login Successfully.",
-    //     description: ` Welcome Again ${email} as Admin`,
-    //     status: "success",
-    //     duration: 3000,
-    //     position: "top",
-    //     isClosable: true,
-    //   });
-    //   dispatch(setLogin);
-    //   navigate('/admin', { replace: true })
-    // } else {
-    //   let checkUser = users.find(el => el.email === email && el.password === password);
-    //   if (checkUser) {
-    //     localStorage.setItem("userId", checkUser.id);
-    //     toast({
-    //       title: "Login Successfully.",
-    //       description: ` Welcome ${email}`,
-    //       status: "success",
-    //       duration: 3000,
-    //       position: "top",
-    //       isClosable: true,
-    //     });
-    //     dispatch(setLogin);
-    //     navigate(comingFrom, { replace: true })
-    //   } else {
-    //     toast({
-    //       title: "Wrong Creadentials.",
-    //       description: `Please register ${email}`,
-    //       status: "error",
-    //       duration: 3000,
-    //       position: "top",
-    //       isClosable: true,
-    //     });
-    //   }
-    // }
+    }
   };
 
   const getGoogleUserDetails = (tokenResponse) => {
@@ -97,7 +58,7 @@ export const Login = () => {
           Authorization: `Bearer ${accessToken}`,
         },
       }).then((response) =>{
-        const user={email:response.data.email,password:'1234'};
+        const user={email:response.res.data.email,password:'1234'};
         handleSubmit(1,user);
       }).catch((error) => console.log("error while login", error));
     } catch (error) {

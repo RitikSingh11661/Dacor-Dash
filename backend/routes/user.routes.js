@@ -17,7 +17,6 @@ userRoutes.get("/", async (req, res) => {
 userRoutes.post("/add", async (req, res) => {
     const { email } = req.body;
     try {
-        // console.log(preCheck)
         if (req.body.name && req.body.email && req.body.password && req.body.wallet) {
             const preCheck = await userModel.findOne({ email });
             if (!preCheck) {

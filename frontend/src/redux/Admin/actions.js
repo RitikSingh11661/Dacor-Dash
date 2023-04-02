@@ -67,18 +67,21 @@ const getCartsSuccess = (payload) => ({ type: GET_CARTS_SUCCESS, payload });
 
 export const getProducts = (dispatch) => {
   dispatch(getProductDataRequest());
-  axios.get(`https://universal-mall-api.onrender.com/products`)
-    .then((res) =>dispatch(getProductDataSuccess(res.data)))
+  axios.get(`https://talented-teal-hosiery.cyclic.app/product`)
+    .then((res) =>dispatch(getProductDataSuccess(res.data.msg)))
     .catch(()=>dispatch(getProductDataFailure()));
 };
 
 export const addProduct = (product) => async (dispatch) => {
   dispatch(addProductRequest());
   try {
-    const { data } = await axios.post("https://universal-mall-api.onrender.com/products", product);
+    const {data} =await axios.post("https://talented-teal-hosiery.cyclic.app/product/add",JSON.stringify(product),{
+      headers:{'Content-Type':'application/json',token:localStorage.getItem('token')}
+    });
     dispatch(addProductSuccess(data));
     return data;
   } catch (error) {
+    console.log('error',error)
     dispatch(addProductFailure(error));
   }
 };
@@ -86,17 +89,26 @@ export const addProduct = (product) => async (dispatch) => {
 export const deleteProduct = (id) => async (dispatch) => {
   dispatch(deleteProductRequest());
   try {
-    axios.delete(`https://universal-mall-api.onrender.com/products/${id}`);
+    const {data}=await axios.delete(`https://talented-teal-hosiery.cyclic.app/product/delete/${id}`,{
+      headers:{token:localStorage.getItem('token')}
+    });
     dispatch(deleteProductSuccess(id));
+    return data;
+
   } catch (error) {
     dispatch(deleteProductFailure(error));
   }
 };
+
 export const updateProduct = (product) => async (dispatch) => {
+  console.log('product',product)
   dispatch(updateProductRequest());
   try {
-    const { data } = await axios.patch(`https://universal-mall-api.onrender.com/products/${product.id}`, product);
-    dispatch(updateProductSuccess(data));
+    const { data } = await axios.patch(`https://talented-teal-hosiery.cyclic.app/product/update/${product._id}`,JSON.stringify(product),{
+      headers:{'Content-Type':'application/json',token:localStorage.getItem('token')}
+    });
+    dispatch(updateProductSuccess(product));
+    return data;
   } catch (error) {
     dispatch(updateProductFailure(error));
   }
@@ -105,9 +117,7 @@ export const updateProduct = (product) => async (dispatch) => {
 export const getUsersList = async (dispatch) => {
   dispatch(getUserListRequest());
   try {
-    const { data } = await axios.get(
-      "https://universal-mall-api.onrender.com/users"
-    );
+    const { data } = await axios.get("https://universal-mall-api.onrender.com/users");
     dispatch(getUserListSuccess(data));
   } catch (error) {
     dispatch(getUserListFailure(error));
@@ -117,7 +127,9 @@ export const getUsersList = async (dispatch) => {
 export const deleteUser = (id) => async (dispatch) => {
   dispatch(deleteUserRequest());
   try {
-    let res = await axios.delete(`https://universal-mall-api.onrender.com/users/${id}`);
+    let res = await axios.delete(`https://universal-mall-api.onrender.com/users/${id}`,{
+      headers:{token:localStorage.getItem('token')}
+    });
     dispatch(deleteUserSuccess(id));
     return res;
   } catch (error) {
@@ -134,22 +146,26 @@ export const getAdminList = async (dispatch) => {
     dispatch(getAdminListFailure(error));
   }
 };
+
 export const addAdmin = (admin) => async (dispatch) => {
   dispatch(addAdminRequest());
   try {
-    let { data } = await axios.post("https://universal-mall-api.onrender.com/admins",admin);
+    let { data } = await axios.post("https://talented-teal-hosiery.cyclic.app/admin/add",JSON.stringify(admin),{
+      headers:{'Content-Type': 'application/json',token:localStorage.getItem('token')}
+    });
     dispatch(addAdminSuccess(data));
     return data;
   } catch (error) {
     dispatch(addAdminFailure(error));
   }
 };
+
 export const deleteAdmin = (id) => async (dispatch) => {
   dispatch(deleteAdminRequest());
   try {
-    let { data } = await axios.delete(
-      `https://universal-mall-api.onrender.com/admins/${id}`
-    );
+    let { data } = await axios.delete(`https://universal-mall-api.onrender.com/admins/${id}`,{
+      headers:{token:localStorage.getItem('token')}
+    });
     dispatch(deleteAdminSuccess(id));
     return data;
   } catch (error) {
