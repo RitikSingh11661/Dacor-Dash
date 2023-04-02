@@ -1,10 +1,11 @@
 import { Box, Button, Grid, HStack, Image, Input, InputGroup, InputRightElement, StackDivider, Text, VStack } from "@chakra-ui/react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { QuestionIcon, Search2Icon } from "@chakra-ui/icons"
 import "../style/Navbar.css";
 // import { useSelector } from "react-redux";
 
 export const Navbar = () => {
+    const navigate = useNavigate();
     const isAuth = false;
     const handleClick = () => {
 
@@ -25,7 +26,7 @@ export const Navbar = () => {
                     </Link>
                     <Link>
                         <HStack align={"center"}>
-                            <Image width={"25px"} src="https://i.ibb.co/PQw8SY0/delivery-truck.png" alt="https://i.ibb.co/PQw8SY0/delivery-truck.png" /><Text>Track Order</Text>
+                            <Image width={"25px"} onClick={() => { navigate("/trackorder") }} src="https://i.ibb.co/PQw8SY0/delivery-truck.png" alt="https://i.ibb.co/PQw8SY0/delivery-truck.png" /><Text>Track Order</Text>
                         </HStack>
                     </Link>
                 </HStack>
@@ -45,14 +46,14 @@ export const Navbar = () => {
                     </InputRightElement>
                 </InputGroup>
                 <Grid gridTemplateColumns={"1fr 1fr 1fr 1fr"} alignItems="center" gap="5%">
-                    <Link to="/"><Image w={"25px"} src="https://i.ibb.co/PQw8SY0/delivery-truck.png" alt="https://i.ibb.co/PQw8SY0/delivery-truck.png" /></Link>
+                    <Link to="/trackorder"><Image w={"25px"} src="https://i.ibb.co/PQw8SY0/delivery-truck.png" alt="https://i.ibb.co/PQw8SY0/delivery-truck.png" /></Link>
                     <Box id="userBox">
                         <Image w={"20px"} src="https://i.ibb.co/pLkHBMW/account.png" alt="https://i.ibb.co/pLkHBMW/account.png" />
                         {
                             isAuth ?
                                 <VStack spacing={0}>
                                     <Link>Profile</Link>
-                                    <Link to="/">Orders</Link>
+                                    <Link to="/trackorder">Orders</Link>
                                     <Link>Vouchers</Link>
                                     <Link>Logout</Link>
                                 </VStack>
@@ -65,8 +66,8 @@ export const Navbar = () => {
                                 </VStack>
                         }
                     </Box>
-                    <Link to="/"><Image w={"20px"} src="https://i.ibb.co/KVtstJ7/heart.png" alt="https://i.ibb.co/KVtstJ7/heart.png" /></Link>
-                    <Link to="/"><Image w={"20px"} src="https://i.ibb.co/ySc7vxw/shopping-cart.png" alt="https://i.ibb.co/ySc7vxw/shopping-cart.png" /></Link>
+                    <Link to="/wishlist"><Image w={"20px"} src="https://i.ibb.co/KVtstJ7/heart.png" alt="https://i.ibb.co/KVtstJ7/heart.png" /></Link>
+                    <Link to="/cart"><Image w={"20px"} src="https://i.ibb.co/ySc7vxw/shopping-cart.png" alt="https://i.ibb.co/ySc7vxw/shopping-cart.png" /></Link>
                 </Grid>
             </Grid>
         </VStack>
