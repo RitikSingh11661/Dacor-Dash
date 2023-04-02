@@ -19,8 +19,10 @@ import { FcLike } from "react-icons/fc";
 import styles from "./ProductCard.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { addWishlist } from "../redux/Wishlist/actions";
+import jwtDecode from "jwt-decode";
 
-const ProductCard = ({ image, desc, brand, oriPrice, category, disPrice }) => {
+
+const ProductCard = ({ id ,name , image, desc, brand, oriPrice, category, disPrice }) => {
   const loading = useSelector((store) => store.ProductReducer.loading);
   const dispatch = useDispatch();
   const [show, setShow] = useState(false);
@@ -33,7 +35,18 @@ const ProductCard = ({ image, desc, brand, oriPrice, category, disPrice }) => {
     setShow(false);
   };
   const handleWish = () => {
-    dispatch(addWishlist());
+    const { userId } = jwtDecode(localStorage.getItem("token"));
+    const wishlistprod = {
+      userId,
+      prodId: id,
+      name,
+      image,
+      brand,
+      originalPrice: oriPrice,
+      discountPrice: disPrice,
+      category,
+    };
+    dispatch(addWishlist(wishlistprod));
   };
   return (
     <div>

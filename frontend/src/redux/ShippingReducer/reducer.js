@@ -25,7 +25,7 @@ export const reducer = (state = initialState, { type, payload }) => {
     case GET_ADDRESS_SUCCESS:
       return { ...state, isLoading: false, address: payload };
     case DELETE_SUCCESS:
-      return { ...state, isLoading: false, isError: true };
+      return { ...state, isLoading: false, isError: false };
     default:
       return state;
   }
