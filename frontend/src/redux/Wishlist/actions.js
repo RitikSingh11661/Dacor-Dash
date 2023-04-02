@@ -23,8 +23,7 @@ export const getWishlist =()=> (dispatch) => {
   axios
     .get(`https://talented-teal-hosiery.cyclic.app/wishlist`, {
       headers: {
-        token:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDI2ZWQ2MGIwZWY4ZjBjNmM1ZTM5ODQiLCJpYXQiOjE2ODA0MTY2NTMsImV4cCI6MTY4MDQyMDI1M30.tRsJZW5wGojmZQwnraRQceIaZVEoThGA9qz-Bi8szyU",
+        token: localStorage.getItem('token'),
       },
     })
     .then((res) => dispatch(wishlistGet(res.data.msg)))
@@ -35,11 +34,16 @@ export const getWishlist =()=> (dispatch) => {
 
 export const addWishlist = (product) => async (dispatch) => {
   dispatch(wishlistAdd());
+  console.log(product)
   try {
     const { data } = await axios.post(
       "https://talented-teal-hosiery.cyclic.app/wishlist/add",
-      product,
-    
+      JSON.stringify(product),
+      {
+        headers: {
+          token: localStorage.getItem("token"),
+        },
+      }
     );
     dispatch(wishlistAdd(data));
   } catch (error) {
@@ -51,7 +55,11 @@ export const removeWishlist = (id) => async (dispatch) => {
   dispatch(wishlistRemove());
   try {
     axios.delete(
-      `https://talented-teal-hosiery.cyclic.app/wishlist/delete/${id}`,
+      `https://talented-teal-hosiery.cyclic.app/wishlist/delete/${id}` ,  {
+      headers: {
+        token: localStorage.getItem('token'),
+      },
+    },
      
     );
     dispatch(wishlistRemove(id));
@@ -59,5 +67,10 @@ export const removeWishlist = (id) => async (dispatch) => {
     console.log(error);
   }
 };
+
+
+
+
+
 
 
