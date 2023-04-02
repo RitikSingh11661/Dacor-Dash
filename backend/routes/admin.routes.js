@@ -3,17 +3,9 @@ const { adminModel } = require("../models/admin.model");
 const express = require("express");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const { verifyToken } = require("../middlewares/auth.middleware");
 
 const adminRoutes = express.Router();
-
-adminRoutes.get("/", async (req, res) => {
-    try {
-        const data = await adminModel.find();
-        res.status(200).send({ msg: data, status: "success" });
-    } catch (e) {
-        res.status(400).send({ msg: e.message })
-    }
-})
 
 adminRoutes.post("/add", async (req, res) => {
     const { email } = req.body;
@@ -60,6 +52,17 @@ adminRoutes.post("/login", async (req, res) => {
     }
 })
 
+// below routes for only admin
+adminRoutes.use(verifyToken);
+adminRoutes.get("/", async (req, res) => {
+    try {
+        const data = await adminModel.find();
+        res.status(200).send({data,status:"success"});
+    } catch (e) {
+        res.status(400).send({ msg: e.message })
+    }
+})
+
 adminRoutes.delete("/delete/:id", async (req, res) => {
     try {
         await adminModel.findByIdAndDelete(req.params.id);
@@ -80,3 +83,24 @@ adminRoutes.patch("/update/:id", async (req, res) => {
 
 
 module.exports = { adminRoutes };
+
+// admin/add
+// {
+//     "name":"admin2",
+//     "email":"admin2@gmail.com",
+//     "password":"admin2",
+//     "image":"image.link",
+//     "contact":738232,
+//     "role":"technical"
+//  }
+
+//admin/login
+// {
+//     "name":"admin2",
+//     "email":"admin2@gmail.com",
+//     "password":"admin2",
+//     "image":"image.link",
+//     "contact":738232,
+//     "role":"technical"
+//  }
+

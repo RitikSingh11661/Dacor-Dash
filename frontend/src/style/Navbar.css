@@ -82,7 +82,8 @@
     border: 0.1px solid #e2e8f0;
     display: none;
     position: absolute;
-    z-index: 2;
+    right: 0;
+    z-index: 6;
     background-color: white;
 }
 
@@ -90,7 +91,7 @@
     transition: color .2s ease-in-out;
     border-bottom: 0.1px solid #e2e8f0;
     padding: 10px 20px 10px 20px;
-    width: 100px;
+    white-space: nowrap;
 }
 
 #userBox>div>*:hover {

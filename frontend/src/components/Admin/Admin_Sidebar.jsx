@@ -10,9 +10,10 @@ import AddProducts from './AddProducts';
 import AddAdmins from './AddAdmins';
 import Analyse from './Analyse';
 import logo from '../../assets/Decor Dash_logo.png';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setLogout } from '../../redux/Auth/actions';
-import axios from 'axios';
+import jwtDecode from 'jwt-decode';
+import { getAdminList } from '../../redux/Admin/actions';
 
 const LinkItems = [
     { name: 'Dashboard', compName: 'Dashboard', heading: 'Dashboard', icon: FiHome },
@@ -26,11 +27,10 @@ const LinkItems = [
 
 function SidebarWithHeader({ children }) {
     const dispatch = useDispatch();
+    const { isLoadingAdminList, isErrorAdminList, admins} = useSelector(store => store.AdminReducer);
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [comp, setComp] = useState('Dashboard');
-    const [admin, setadmin] = useState({});
-    const adminId = localStorage.getItem('adminId')
-
+    const [admin, setAdmin] = useState({});
     const handleLogout = () => {
         dispatch(setLogout);
       };
@@ -47,10 +47,12 @@ function SidebarWithHeader({ children }) {
     
     useEffect(() => {
         componentChange(comp)
-        axios.get(`https://universal-mall-api.onrender.com/admins/${adminId}`).then(res=>setadmin(res.data))
+        dispatch(getAdminList)
+        const decodedToken = jwtDecode(localStorage.getItem('token'));
+        const detail = admins?.find(admin=>admin._id==decodedToken.userId);
+        setAdmin(detail)
     }, [comp])
-    console.log(admin)
-
+    
     const SidebarContent = ({ onClose, ...rest }) => {
         return (
             <Box transition="3s ease" bg={useColorModeValue('white', 'gray.900')} borderRight="1px"
@@ -64,6 +66,7 @@ function SidebarWithHeader({ children }) {
             </Box>
         );
     };
+
 
     return (
         <Box>
@@ -138,10 +141,9 @@ const MobileNav = ({admin, handleLogout,onOpen, ...rest }) => {
                             transition="all 0.3s"
                             _focus={{ boxShadow: 'none' }}>
                             <HStack>
-                                <Avatar size={'sm'} src={admin.image}/>
+                                <Avatar size={'sm'} src={admin?.image}/>
                                 <VStack display={{ base: 'none', md: 'flex' }} alignItems="flex-start" spacing="1px" ml="2">
-                                    <Text fontSize="sm">{admin.name}</Text>
-                                    <Text fontSize="xs" color="gray.600">Admin</Text>
+                                    <Text fontSize="large" color="gray.600">{admin?.name}</Text>
                                 </VStack>
                                 <Box display={{ base: 'none', md: 'flex' }}>
                                     <FiChevronDown />

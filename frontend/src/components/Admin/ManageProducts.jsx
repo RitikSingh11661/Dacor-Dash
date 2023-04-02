@@ -7,7 +7,7 @@ import SingleProduct from './AdminSingleProduct';
 const ManageProducts = () => {
   const {isLoading,isError,products}=useSelector(store=>store.AdminReducer);
   const dispatch=useDispatch();
-
+  
   useEffect(()=>{
     dispatch(getProducts);
   },[])
@@ -18,7 +18,7 @@ const ManageProducts = () => {
       {isLoading && <CircularProgress isIndeterminate color='green.300' />}
       {isError && <h2>Error Occured while getting product list</h2>}
       <Grid templateColumns={'repeat(4,1fr)'} gap={2} className='flexbro' templateRows={'100'}>
-      {products.length>0 && products.map(product=><SingleProduct key={product.id} product={product}/>)}
+      {products.length>0 && products.map(product=><SingleProduct key={product._id} product={product}/>)}
       </Grid>
     </div>
   )

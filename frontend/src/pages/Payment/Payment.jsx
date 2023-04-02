@@ -57,15 +57,30 @@ const Payment = () => {
     <div>
       <Stepper />
       <div id={styles.main}>
-        <div id={styles.first}>
-          {address.map((ele) => {
-            return (
-              <div className={styles.single_card_address}>
-                <ShippingDetailsCard key={ele.id} {...ele} />
-              </div>
-            );
-          })}
-        </div>
+        {address?.length > 0 ? (
+          <div id={styles.first}>
+            {address.map((ele) => {
+              return (
+                <div className={styles.single_card_address}>
+                  <ShippingDetailsCard key={ele.id} {...ele} />
+                </div>
+              );
+            })}
+          </div>
+        ) : (
+          <p
+            style={{
+              textAlign: "center",
+              fontSize: "20px",
+              fontWeight: "bold",
+              color: "#ED7745",
+             
+            }}
+          >
+            There is no Address
+          </p>
+        )}
+
         <div id={styles.method}>
           <Tabs
             style={{

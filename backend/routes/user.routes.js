@@ -2,6 +2,7 @@ const { userModel } = require("../models/user.model");
 const bcrypt = require("bcrypt");
 const express = require("express");
 const jwt = require("jsonwebtoken");
+const { verifyToken } = require("../middlewares/auth.middleware");
 
 const userRoutes = express.Router();
 
@@ -17,7 +18,6 @@ userRoutes.get("/", async (req, res) => {
 userRoutes.post("/add", async (req, res) => {
     const { email } = req.body;
     try {
-        // console.log(preCheck)
         if (req.body.name && req.body.email && req.body.password && req.body.wallet) {
             const preCheck = await userModel.findOne({ email });
             if (!preCheck) {
@@ -60,10 +60,12 @@ userRoutes.post("/login", async (req, res) => {
     }
 })
 
+userRoutes.use(verifyToken);
+
 userRoutes.delete("/delete/:id", async (req, res) => {
     try {
         await userModel.findByIdAndDelete(req.params.id);
-        res.status(200).send({ msg: "User has been deleted", status: "success" });
+        res.status(200).send({ msg: "User has been deleted",status: "success"});
     } catch (e) {
         res.status(400).send({ msg: e.message });
     }

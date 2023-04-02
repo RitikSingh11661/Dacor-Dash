@@ -129,7 +129,7 @@ export const Homepage = () => {
                         Seating
                     </GridItem>
                 </Grid>
-                <Grid width={"100%"} templateColumns={{ base: 'repeat(2 ,1fr)', md: "repeat(4,1fr)", lg: 'repeat(8,1fr)' }}>
+                <Grid width={"100%"} templateColumns={{ base: 'repeat(2 ,1fr)', md: "repeat(4,1fr)", lg: 'repeat(7,1fr)' }}>
                     <GridItem>
                         <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 30 30" class="category-icon"><title>UL_CATEGORY_ICONS</title><path d="M27 19.6H2.85a.47.47 0 0 0-.5.5v9.4a.47.47 0 0 0 .5.5h3.8a.47.47 0 0 0 .5-.5v-5.7h15.8v5.7a.47.47 0 0 0 .5.5h3.7a.47.47 0 0 0 .5-.5v-9.4a.77.77 0 0 0-.65-.5zm-.45 9.4h-2.7v-5.7a.47.47 0 0 0-.5-.5H6.65a.47.47 0 0 0-.5.5V29h-2.8v-8.4h23.2V29z"></path></svg>Coffee Tables
                     </GridItem>
@@ -153,17 +153,37 @@ export const Homepage = () => {
                     </GridItem>
                 </Grid>
             </VStack>
-            <Box padding={"40px 15%"} >
+            <Box padding={"40px 15%"} className='swiperBox'>
                 <Text fontFamily={"Mrs Eaves XL Serif"} fontSize={"28px"} textDecoration={"underline 1px #ed7745"} textUnderlineOffset={"20px"} color={"#2f4858"} letterSpacing={"3px"} >Value Buys In Furniture</Text>
                 <Swiper
                     id='scalingSwiper'
                     style={{ width: "80%" }}
-                    slidesPerView={3}
+                    // slidesPerView={3}
                     loop
                     spaceBetween={50}
                     modules={[Navigation]}
                     navigation
-                    slidesPerGroup={3}
+                    breakpoints={{
+                        // when window width is < 640px
+                        0: {
+                            // width: 0,
+                            slidesPerView: 1,
+                            slidesPerGroup: 1
+
+                        },
+                        // when window width is >= 640px
+                        600: {
+                            // width: 600,
+                            slidesPerView: 2,
+                            slidesPerGroup: 2
+                        },
+                        // when window width is >= 1000px
+                        1000: {
+                            // width: 1000,
+                            slidesPerView: 3,
+                            slidesPerGroup: 3
+                        },
+                    }}
                 >
                     <SwiperSlide><Image w={"100%"} src='https://www.ulcdn.net/media/Collection/listings/Coffee_Tables-taxon_1.png?1675918016' alt='https://www.ulcdn.net/media/Collection/listings/Coffee_Tables-taxon_1.png?1675918016' /></SwiperSlide>
                     <SwiperSlide><Image w={"100%"} src='https://www.ulcdn.net/media/Collection/listings/TV_Units-taxon-2.png?1675918237' alt='https://www.ulcdn.net/media/Collection/listings/TV_Units-taxon-2.png?1675918237' /></SwiperSlide>
@@ -181,12 +201,31 @@ export const Homepage = () => {
                 <Swiper
                     id='scalingSwiper'
                     style={{ width: "80%" }}
-                    slidesPerView={3}
                     loop
                     spaceBetween={50}
                     modules={[Navigation]}
                     navigation
-                    slidesPerGroup={3}
+                    breakpoints={{
+                        // when window width is < 640px
+                        0: {
+                            // width: 0,
+                            slidesPerView: 1,
+                            slidesPerGroup: 1
+
+                        },
+                        // when window width is >= 640px
+                        600: {
+                            // width: 600,
+                            slidesPerView: 2,
+                            slidesPerGroup: 2
+                        },
+                        // when window width is >= 1000px
+                        1000: {
+                            // width: 1000,
+                            slidesPerView: 3,
+                            slidesPerGroup: 3
+                        },
+                    }}
                 >
                     <SwiperSlide><Image src='https://www.ulcdn.net/media/Collection/listings/Curtains-taxon_4.png?1675923010' alt='https://www.ulcdn.net/media/Collection/listings/Curtains-taxon_4.png?1675923010' /></SwiperSlide>
                     <SwiperSlide><Image src='https://www.ulcdn.net/media/Collection/listings/Cushion_Covers-taxon_5.png?1675923015' alt='https://www.ulcdn.net/media/Collection/listings/Cushion_Covers-taxon_5.png?1675923015' /></SwiperSlide>
@@ -211,12 +250,31 @@ export const Homepage = () => {
                 <Swiper
                     id='reviewSwiper'
                     style={{ width: "90%" }}
-                    slidesPerView={3}
                     loop
                     spaceBetween={50}
                     modules={[Navigation]}
                     navigation
-                    slidesPerGroup={3}
+                    breakpoints={{
+                        // when window width is < 640px
+                        0: {
+                            // width: 0,
+                            slidesPerView: 1,
+                            slidesPerGroup: 1
+
+                        },
+                        // when window width is >= 640px
+                        600: {
+                            // width: 600,
+                            slidesPerView: 2,
+                            slidesPerGroup: 2
+                        },
+                        // when window width is >= 1000px
+                        1000: {
+                            // width: 1000,
+                            slidesPerView: 3,
+                            slidesPerGroup: 3
+                        },
+                    }}
                 >
                     {
                         reviews.map(e => {

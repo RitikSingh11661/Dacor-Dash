@@ -1,3 +1,5 @@
+// const { verifyToken } = require("../middlewares/auth.middleware");
+const { verifyToken } = require("../middlewares/auth.middleware");
 const { prodModel } = require("../models/product.model");
 
 const express = require("express");
@@ -64,10 +66,15 @@ prodRoutes.get("/:id", async (req, res) => {
     }
 })
 
+// Below's for admin only
+prodRoutes.use(verifyToken);
+
 prodRoutes.post("/add", async (req, res) => {
-    const { name, image, brand, originalPrice, discountPrice, category } = req.body;
+    const { name, images, brand, originalPrice, discountPrice, category } = req.body;
+    console.log('req.body',req.body);
+    console.log(name, images, brand, originalPrice, discountPrice, category)
     try {
-        if (name && image && brand && originalPrice && discountPrice && category) {
+        if (name && images && brand && originalPrice && discountPrice && category) {
             const newUser = new prodModel(req.body);
             await newUser.save();
             res.status(200).send({ msg: "Product has been added", status: "success" });
@@ -97,10 +104,13 @@ prodRoutes.patch("/update/:id", async (req, res) => {
     }
 })
 
-
 module.exports = { prodRoutes };
 
-// else if(req.query.q){
-//     const movies = await MovieModel.find({name:{$regex:req.query.q,$options:"$i"}})
-//     res.status(200).json(movies)
+// {
+//     "name":"test1",
+//     "images":["images.link1"],
+//     "brand": "test",
+//     "originalPrice":1000,
+//     "discountPrice":500,
+//     "category":"test"
 // }

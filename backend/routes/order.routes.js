@@ -13,6 +13,15 @@ orderRoutes.get("/", async (req, res) => {
     }
 })
 
+orderRoutes.get("/allorders", async (req, res) => {
+    try {
+        const data = await orderModel.find();
+        res.status(200).send({data,status:"success"})
+    } catch (e) {
+        res.status(400).send({ msg: e.message });
+    }
+})
+
 orderRoutes.post("/add", async (req, res) => {
     try {
         if (req.body.userId && req.body.status && req.body.name && req.body.image && req.body.brand && req.body.originalPrice && req.body.discountPrice && req.body.category) {

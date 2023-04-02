@@ -442,6 +442,9 @@ const Address = () => {
 
         {/* ..........................Price detail card...................................... */}
 
+        
+
+        
         <Box width="350px" border="0px solid red" marginTop="50px">
           <Accordion allowToggle>
             <AccordionItem>

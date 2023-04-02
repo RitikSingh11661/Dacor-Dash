@@ -31,30 +31,37 @@ const Wishlist = () => {
   return (
     <div>
       <p>
-        <span>My Wishlist</span>
+        <h1
+          style={{
+            textAlign: "center",
+            color: "#ED7745",
+            fontWeight: "bold",
+            fontSize: "30px",
+          }}
+        >
+          My Wishlist
+        </h1>
       </p>
-      <div>
-        {/* {data.map((item) => (
-          <div key={item.id}>
-            <WishlistCard {...item} />
-          </div>
-        ))} */}
-        {/* <Box>
-          <Grid templateColumns={"repeat(4, 1fr)"} gap={7} w="95%" m="auto">
-            {data.map((ele) => (
-              <WishlistCard key={ele._id} {...ele} />
-            ))}
-          </Grid>
-        </Box> */}
 
-        {wishlist?.map((item) => {
-          return (
-            <div>
-              <WishlistCard key={item._id} {...item} />
-            </div>
-          );
-        })}
-      </div>
+      {wishlist?.length > 0 ? (
+        <div>
+          <Grid templateColumns={"repeat(3, 1fr)"} w="70%" m="auto">
+            {wishlist?.map((item) => {
+              return (
+                <div>
+                  <WishlistCard key={item._id} id={item._id} {...item} />
+                </div>
+              );
+            })}
+          </Grid>
+        </div>
+      ) : (
+        <p
+          style={{ textAlign: "center", fontSize: "20px", fontWeight: "bold" }}
+        >
+          Your wishlist is empty.
+        </p>
+      )}
     </div>
   );
 };
