@@ -127,13 +127,10 @@ export const Login = () => {
                 </Stack>
                 <Button
                   type="submit"
-                  bg={"blue.500"}
+                  bg={"#ED7745"}
                   color={"white"}
-                  _hover={{
-                    bg: "blue.600",
-                  }}
                 >
-                  Sign in
+                  Log In
                 </Button>
                 <Box textAlign="center">
                   <GoogleLoginButton onClick={loginWithGoogle} />

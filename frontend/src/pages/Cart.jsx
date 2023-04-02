@@ -27,6 +27,7 @@ import OrderSummary from '../components/OrderSummary';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteCart, getCart } from '../redux/Cart/cart.action';
 import EmptyCart from '../components/EmptyCart';
+import Stepper from '../components/Stepper';
 
 export const Cart = () => {
 
@@ -93,6 +94,7 @@ export const Cart = () => {
 
   return (
     <div>
+      <Stepper/>
       <Box p="0 15%" mt="20px" fontFamily={`"Mr Eaves XL Modern",sans-serif`}>
        
           <Box>
@@ -124,14 +126,15 @@ export const Cart = () => {
                 >
                   CONTINUE SHOPPING
                 </Button>
-                <Button
+                <Link to='/address'>  <Button
                   fontSize="0.7rem"
                   borderRadius="none"
                   colorScheme="orange"
                   px="10"
                 >
                   CHECKOUT
-                </Button>
+                </Button> </Link>
+               
               </Box>
             </HStack>
           </Box>
