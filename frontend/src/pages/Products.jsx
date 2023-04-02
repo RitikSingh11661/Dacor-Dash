@@ -21,7 +21,7 @@ export const Products = () => {
     const [searchParams] = useSearchParams();
 
     const location = useLocation();
-    console.log(products)
+
     useEffect(() => {
         if (products?.length === 0 || location) {
             const getProductsParams = {
@@ -35,7 +35,7 @@ export const Products = () => {
             dispatch(getProducts(getProductsParams))
         }
     }, [location.search])
-
+   
     return (
         <div>
             <Filter_Sort />
@@ -47,6 +47,7 @@ export const Products = () => {
                             <Box key={prod.id}>
                                 <ProductCard
                                     id={prod._id}
+
                                     name={prod.name}
                                     image={prod.image[0]}
                                     desc={prod.description}

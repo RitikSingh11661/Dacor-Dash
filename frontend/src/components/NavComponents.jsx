@@ -1,4 +1,5 @@
 import { HStack, List, ListItem, Text, VStack } from "@chakra-ui/react"
+import { Link } from "react-router-dom"
 
 const style = {
     alignItems: "flex-start",
@@ -15,7 +16,9 @@ export const Dz = ({ mouseLeave }) => {
                     <ListItem>Weekday Special Deals</ListItem>
                     <ListItem>Stunning Deals</ListItem>
                     <ListItem>Clearance Sale</ListItem>
+                    <Link to="/products">
                     <ListItem>All Products on Sale</ListItem>
+                    </Link>
                     <ListItem>All Decor on Sale</ListItem>
                 </List>
             </VStack>

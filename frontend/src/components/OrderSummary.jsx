@@ -27,8 +27,8 @@ const OrderSummary = ({ totalItem, sum, couponDiscount }) => {
           <Text>Shipping</Text>
         </Box>
         <Box textAlign={"right"} color="#606060">
-          <Text>₹{sum}</Text>
-          <Text>₹{discount}</Text>
+          <Text>₹2530</Text>
+          <Text>₹530</Text>
           <Text fontWeight="bold" color={"#359D40"}>
             FREE
           </Text>
@@ -45,8 +45,8 @@ const OrderSummary = ({ totalItem, sum, couponDiscount }) => {
           </Text>
         </Box>
         <Box textAlign={"right"}>
-          <Text>₹{GT}</Text>
-          <Text fontWeight={"medium"} color="#606060" mt="1rem">₹{GT}</Text>
+          <Text>₹2000</Text>
+          <Text fontWeight={"medium"} color="#606060" mt="1rem">₹2000</Text>
         </Box>
       </Box>
       {/* <Link to={path}>

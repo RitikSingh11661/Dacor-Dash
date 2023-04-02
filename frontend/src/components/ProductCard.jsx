@@ -51,6 +51,7 @@ const ProductCard = ({ id ,name , image, desc, brand, oriPrice, category, disPri
   return (
     <div>
       <Center py={3}>
+
         <Skeleton isLoaded={!loading} borderRadius="md" fadeDuration={1}>
           <Box
             fontFamily={`"Mr Eaves XL Modern",sans-serif`}
@@ -64,7 +65,7 @@ const ProductCard = ({ id ,name , image, desc, brand, oriPrice, category, disPri
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
-            <Link to={`/product/1`}>
+            <Link to={`/product/${id}`}>
               <Image
                 w="304px"
                 height={"300px"}

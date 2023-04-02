@@ -18,8 +18,9 @@ export const getSingleProductData = (id)=>async(dispatch)=>{
 
     try{
        let res = await getSingleProductApi(id)
-       if(res){
-        dispatch(SingleProductSuccess(res));
+       
+       if(res[0]){
+        dispatch(SingleProductSuccess(res[0]));
        }
     }
     catch(err){

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   Box,
   Center,
@@ -15,6 +15,7 @@ import {
   Divider,
   Select,
   VStack,
+  useToast,
  
 } from '@chakra-ui/react';
 import { FiHeart } from 'react-icons/fi';
@@ -23,12 +24,77 @@ import { Link } from 'react-router-dom';
 import {RxCross2} from "react-icons/rx"
 import CartAccordion from '../components/CartAccordion';
 import OrderSummary from '../components/OrderSummary';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteCart, getCart } from '../redux/Cart/cart.action';
+import EmptyCart from '../components/EmptyCart';
+
 export const Cart = () => {
+
+   const cartData = useSelector((store)=>store.cartReducer.cart);
+   const dispatch = useDispatch();
+   const initSum = 0;
+   const toast = useToast();
+   let sum;
+
+   if(cartData.length>0){
+    sum = cartData?.reduce((acc,ele)=>(
+      acc+ele.originalPrice*ele.quantity,initSum
+     ));
+   }
+   console.log(cartData)
+   const [couponDiscount,setCouponDiscount] = useState(0);
+
+   // coupon
+
+   const availCoupon = (coupon)=>{
+    if(coupon === "Decor100"){
+      setCouponDiscount(Math.floor(sum/10));
+      toast({
+        title: "Applied Successfully",
+        description: "You availed discount of 10%",
+        variant: "subtle",
+        status: "success",
+        position: "top-right",
+        duration: 3000,
+        isClosable: true,
+      });
+    }
+    else {
+      toast({
+        title: "Not Valid",
+        description: "You have added wrong coupon",
+        variant: "subtle",
+        status: "error",
+        position: "top-right",
+        duration: 3000,
+        isClosable: true,
+      });
+    }
+   };
+
+   const deleteHandler = ()=>{
+    dispatch(deleteCart());
+    toast({
+      title: "Deleted Successfully",
+      description: "Product deleted from cart",
+      variant: "subtle",
+      status: "success",
+      position: "top-right",
+      duration: 3000,
+      isClosable: true,
+    });
+   }
+
+   useEffect(() => {
+    
+      dispatch(getCart());
+    
+  }, []);
 
   return (
     <div>
       <Box p="0 15%" mt="20px" fontFamily={`"Mr Eaves XL Modern",sans-serif`}>
-        <Box h="100%">
+       
           <Box>
             <HStack justifyContent="space-between">
               <Box></Box>
@@ -69,11 +135,14 @@ export const Cart = () => {
               </Box>
             </HStack>
           </Box>
-          <Box>
+          {
+            cartData?.length>0?
+              <>
+            <Box>
             <Divider />
             <Box display={{base:"none",md:"none",lg:"block"}}>
             <HStack fontSize="14px"   justifyContent="space-between" p="2.5" >
-              <Box w="23%">
+              <Box w="40%">
               <Text >PRODUCTS</Text>
               </Box>
               <Text>DELIVERY DATE</Text>
@@ -82,91 +151,93 @@ export const Cart = () => {
             </HStack>
             </Box>
             <Divider />
-            <Box w="100%" h="max-content"  mt="10px">
-              <HStack justifyContent="space-around">
-                <Box width="35%" h="100%" >
-                 <HStack >
-                 <VStack  >
-                    <Image shadow={"lg"}
-                      w="85%"
-                      src="https://www.carters.com/dw/image/v2/AAMK_PRD/on/demandware.static/-/Sites-carters_master_catalog/default/dw84402156/productimages/1O541210.jpg?sw=140&sh=175&sfrm=jpg"
-                     
-                      alt=""
-                    ></Image>
-                    <Button
-                      fontWeight="none"
-                      borderRadius="10px"
-                      color="#ffffff"
-                      fontSize="0.6rem"
-                      px="0.6rem"
-                      bg="#fD7745"
-                    >
-                      {" "}
-                      <FiHeart color="#ffffff" size="25px" />
-                      Add To Wishlist
-                    </Button>
-                  </VStack>
-                  <VStack
-                      textAlign="left"
-                      p="3px"
-                      color="#444444"
-                      w="70%"
-                      h="100%"
-                      mt="-30px"
-
-                    >
-                      <Text fontSize="14px" color="#222222">
-                      Babylon Solid Wood Bookshelf in Walnut Finish
-                      </Text>
-                      <Text fotSize="13px" textAlign="left" color="#999999">
-                      Finish: Walnut
-                      </Text>
-                     
-
-                        <Text fontSize="11px">
-                            You can cancel your order before shipped, and a full refund will be initiated.
-                        </Text>
-                  
+            {cartData?.map((el)=>(
+                <Box w="100%" h="max-content" mt="10px">
+                <HStack justifyContent="space-around">
+                  <Box width="45%" h="100%" >
+                   <HStack >
+                   <VStack  >
+                      <Image shadow={"lg"}
+                        w="85%"
+                        src={el.image[0]}
+                       
+                        alt=""
+                      ></Image>
+                      <Button
+                        fontWeight="none"
+                        borderRadius="10px"
+                        color="#ffffff"
+                        fontSize="0.6rem"
+                        px="0.6rem"
+                        bg="#fD7745"
+                      >
+                        {" "}
+                        <FiHeart color="#ffffff" size="25px" />
+                        Add To Wishlist
+                      </Button>
                     </VStack>
-                 </HStack>
-                </Box>
-                <Box w="65%">
-                  <HStack justifyContent="space-around" >
-                  <Text fontSize="14px"  color="#000000">By 5th Apr, 2023</Text>
-              
-                  <Box ml="50px">
-                  <Select placeholder="Q">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                      </Select>
+                    <VStack
+                        textAlign="left"
+                        p="3px"
+                        color="#444444"
+                        w="70%"
+                        h="100%"
+                        mt="-30px"
+  
+                      >
+                        <Text fontSize="14px" color="#222222">
+                        {el.name}
+                        </Text>
+                        <Text fontSize="13px" textAlign="left" color="#999999">
+                        Finish: Walnut
+                        </Text>
+                       
+  
+                          <Text fontSize="11px">
+                              You can cancel your order before shipped, and a full refund will be initiated.
+                          </Text>
                     
-                  </Box >
-                     <Stack border="1px solid red" justifyContent="flex-end" >
-                     <HStack>
-                     <VStack  >
-                      <Text color={"#999999"} textDecoration="line-through">$15.00</Text>
-                      <Text   textAlign="right">$14.00</Text>
                       </VStack>
-                      <Box>
-                        <RxCross2/>
-                      </Box>
-                     </HStack>
-                     </Stack>
-                   
-                  </HStack>
-                </Box>
-              </HStack>
-            </Box>
+                   </HStack>
+                  </Box>
+                  <Box w="65%">
+                    <HStack justifyContent="space-around" >
+                    <Text fontSize="14px"  color="#000000">By 5th Apr, 2023</Text>
+                
+                    <Box ml="50px">
+                    <Select placeholder="Q">
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                          <option value="6">6</option>
+                          <option value="7">7</option>
+                          <option value="8">8</option>
+                          <option value="9">9</option>
+                        </Select>
+                      
+                    </Box >
+                       <Stack border="1px solid red" justifyContent="flex-end" >
+                       <HStack>
+                       <VStack  >
+                        <Text color={"#999999"} textDecoration="line-through">₹{el.originalPrice}</Text>
+                        <Text   textAlign="right">₹{el.discountPrice}</Text>
+                        </VStack>
+                        <Box onClick={()=>deleteHandler(el._id)}>
+                          <RxCross2/>
+                        </Box>
+                       </HStack>
+                       </Stack>
+                     
+                    </HStack>
+                  </Box>
+                </HStack>
+              </Box>
+            ))}
             <Divider />
           </Box>
-        </Box>
+    
         <HStack justifyContent="space-between" alignItems={"flex-start"} p="10px">
           <Stack flexDirection="row" p="2px 5px 2px 7px" spacing="" gap="3">
               <Image w="3rem" h="1.3rem" src="https://www.ulcdn.net/assets/spree/frontend/paymentMode/VISA-verified-gray-071bc1fbd8561b3bf044e3ac3037eca5.png" alt="" />
@@ -181,11 +252,11 @@ export const Cart = () => {
           h={{ md: "25rem" }}
         >
           <CartAccordion />
-          <OrderSummary
-            
-          />
+          <OrderSummary/>
         </Box>
-        </HStack>
+      </HStack></>
+            :<EmptyCart/>
+          }
       </Box>
     </div>
   );
