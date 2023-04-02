@@ -29,7 +29,7 @@ export const deldatasuccess = () => {
 export const postRequestAddress = (payload) => (dispatch) => {
   dispatch(getpostRequest());
   axios
-    .post("https://talented-teal-hosiery.cyclic.app/address/add", payload)
+    .post(`${process.env.REACT_APP_API_AI}/address/add`, payload)
     .then((res) => {
       console.log("post", res.data);
       dispatch(getpostSuccessAddress(res.data));
@@ -42,9 +42,9 @@ export const postRequestAddress = (payload) => (dispatch) => {
 export const getRequestAddress = () => (dispatch) => {
   dispatch(getpostRequest());
   axios
-    .get("https://talented-teal-hosiery.cyclic.app/address")
+    .get(`${process.env.REACT_APP_API_AI}/address`)
     .then((res) => {
-        console.log("get",res.data);
+      console.log("get", res.data);
       dispatch(getdataSuccessAddress(res.data));
     })
     .catch((error) => {
@@ -55,7 +55,7 @@ export const getRequestAddress = () => (dispatch) => {
 export const deletedataAdd = (_id) => (dispatch) => {
   dispatch(getpostRequest());
   return axios
-    .delete(`https://talented-teal-hosiery.cyclic.app/address/delete/${_id}`)
+    .delete(`${process.env.REACT_APP_API_AI}/address/delete/${id}`)
     .then((res) => {
       console.log(res.data);
       dispatch(deldatasuccess());

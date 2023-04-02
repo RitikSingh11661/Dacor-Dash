@@ -21,9 +21,9 @@ const wishlistRemove = () => {
 export const getWishlist =()=> (dispatch) => {
   dispatch(wishlistGet());
   axios
-    .get(`https://talented-teal-hosiery.cyclic.app/wishlist`, {
+    .get(`${process.env.REACT_APP_API_AI}/wishlist`, {
       headers: {
-        token: localStorage.getItem('token'),
+        token: localStorage.getItem("token"),
       },
     })
     .then((res) => dispatch(wishlistGet(res.data.msg)))
@@ -37,8 +37,8 @@ export const addWishlist = (product) => async (dispatch) => {
   console.log(product)
   try {
     const { data } = await axios.post(
-      "https://talented-teal-hosiery.cyclic.app/wishlist/add",
-     product,
+      `${process.env.REACT_APP_API_AI}/wishlist/add`,
+      product,
       {
         headers: {
           token: localStorage.getItem("token"),
@@ -55,18 +55,15 @@ export const removeWishlist = (id) => async (dispatch) => {
   console.log(id);
   try {
     
-    return axios.delete(
-
-      `https://talented-teal-hosiery.cyclic.app/wishlist/delete/${id}`,
-      {
+    return axios
+      .delete(`${process.env.REACT_APP_API_AI}/wishlist/delete/${id}`, {
         headers: {
           token: localStorage.getItem("token"),
         },
-      }
-    )
+      })
       .then((res) => {
         console.log(res);
-    })
+      });
   
   } catch (error) {
     console.log(error);
