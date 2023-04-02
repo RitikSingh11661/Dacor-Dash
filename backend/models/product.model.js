@@ -2,10 +2,10 @@ const mongoose = require("mongoose");
 
 const schema = mongoose.Schema({
     name:String,
-    image: Object,
+    images: Object,
     brand: String,
-    originalPrice: String,
-    discountPrice: String,
+    originalPrice:Number,
+    discountPrice:Number,
     category: String
 })
 

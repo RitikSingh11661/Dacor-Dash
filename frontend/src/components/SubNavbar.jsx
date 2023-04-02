@@ -1,10 +1,12 @@
 import { Box, HStack, Text } from "@chakra-ui/react"
 import { useState } from "react";
 import { Bm, Di, Dz, In, Ld, Li, Or, Se, Sr, Sy } from "./NavComponents";
+import { useNavigate } from "react-router-dom";
 import "../style/Navbar.css";
 
 
 export const SubNavbar = () => {
+    const navigate = useNavigate();
     const initState = {
         dz: false,
         sr: false,
@@ -114,6 +116,7 @@ export const SubNavbar = () => {
     return (
         <Box id="catNavMain" position={"sticky"} top={0} zIndex={3} p={{ base: "0px 5px",md:"0px 5px", lg: "0px 15%" }}>
             <HStack className="scroller" position={"relative"} justify={"space-between"} h={"42px"} fontSize={"15px"} id="stack3" width={"100%"} align={"center"} >
+                <Text onClick={()=>{navigate("/products")}} onMouseEnter={handleMouseEnter}>All Products</Text>
                 <Text onMouseEnter={handleMouseEnter}>Deal Zone</Text>
                 <Text onMouseEnter={handleMouseEnter}>Sofas & Recliners</Text>
                 <Text onMouseEnter={handleMouseEnter}>Living</Text>
@@ -124,7 +127,6 @@ export const SubNavbar = () => {
                 <Text onMouseEnter={handleMouseEnter}>Lighting & Decor</Text>
                 <Text onMouseEnter={handleMouseEnter}>Outdoor</Text>
                 <Text onMouseEnter={handleMouseEnter}>Interiors</Text>
-                <Text onMouseEnter={handleMouseEnter}>Trending</Text>
             </HStack>
             <Box id="catNav">
                 {navCat.dz && <Dz mouseLeave={handleMouseLeave} />}

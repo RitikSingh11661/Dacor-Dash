@@ -86,7 +86,7 @@ const reducer = (state = inisitalState, { type, payload }) => {
       return {
         ...state,
         isLoadingDelete: false,
-        products: state.products.filter((product) => product.id !== payload),
+        products: state.products.filter((product) => product._id !== payload),
       };
     case DELETE_PRODUCT_FAILURE:
       return { ...state, isLoadingDelete: false, isErrorDelete: true };
@@ -97,7 +97,7 @@ const reducer = (state = inisitalState, { type, payload }) => {
         ...state,
         isLoadingProductUpdate: true,
         products: state.products.map((product) => {
-          if (product.id === payload.id) {
+          if (product._id === payload._id) {
             return payload;
           }
           return product;
@@ -112,7 +112,7 @@ const reducer = (state = inisitalState, { type, payload }) => {
     case DELETE_USER_REQUEST:
       return { ...state, isLoadingUserDelete: true };
     case DELETE_USER_SUCCESS:
-      return {...state,isLoadingUserDelete: false,users: state.users.filter((user) => user.id !== payload)};
+      return {...state,isLoadingUserDelete: false,users: state.users.filter((user) => user._id !== payload)};
     case DELETE_USER_FAILURE:
       return { ...state, isLoadingUserDelete: false, isErrorUserDelete: true };
     case ADD_ADMIN_REQUEST:
@@ -137,7 +137,7 @@ const reducer = (state = inisitalState, { type, payload }) => {
       return {
         ...state,
         isLoadingAdminDelete: false,
-        admins: state.admins.filter((admin) => admin.id !== payload),
+        admins: state.admins.filter((admin) => admin._id !== payload),
       };
     case DELETE_ADMIN_FAILURE:
       return {

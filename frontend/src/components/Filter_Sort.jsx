@@ -86,7 +86,7 @@ const Filter_Sort = () => {
     }
 
   return (
-    <div style={{position:"sticky",top:"0",zIndex:"5"}}>
+    <div style={{background:"white",position:"sticky",top:"0",zIndex:"5"}}>
       <HStack
         color="#494848"
         p={{base:"0 0",md:"0 0",lg:"0 17%"}} 
@@ -123,8 +123,8 @@ const Filter_Sort = () => {
                  <Checkbox  value="jwellery">
                     Jwellery
                   </Checkbox>
-                  <Checkbox  value="fashion">
-                    Fashion
+                  <Checkbox  value="Evok">
+                    Evok
                   </Checkbox>
                   <Checkbox  value="grocery&decor">
                     Grocery&Decor

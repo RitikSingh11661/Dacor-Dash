@@ -20,4 +20,4 @@ export const Allroutes = () => {
         <Route path="*" element={<Pages.NotFoundLayout />} />
       </Routes>
     );
- }   
+ }
