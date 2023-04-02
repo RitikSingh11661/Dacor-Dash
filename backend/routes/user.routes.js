@@ -2,6 +2,7 @@ const { userModel } = require("../models/user.model");
 const bcrypt = require("bcrypt");
 const express = require("express");
 const jwt = require("jsonwebtoken");
+const { verifyToken } = require("../middlewares/auth.middleware");
 
 const userRoutes = express.Router();
 
@@ -59,10 +60,12 @@ userRoutes.post("/login", async (req, res) => {
     }
 })
 
+userRoutes.use(verifyToken);
+
 userRoutes.delete("/delete/:id", async (req, res) => {
     try {
         await userModel.findByIdAndDelete(req.params.id);
-        res.status(200).send({ msg: "User has been deleted", status: "success" });
+        res.status(200).send({ msg: "User has been deleted",status: "success"});
     } catch (e) {
         res.status(400).send({ msg: e.message });
     }

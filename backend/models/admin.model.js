@@ -18,5 +18,6 @@ const obj = {
     "email": "testuser@gmail.com",
     "password": "testuser",
     "contact": 1234567890,
+    "role": "developer",
     "image": "http://url.com"
 }
