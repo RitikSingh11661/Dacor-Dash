@@ -28,8 +28,8 @@ export const Products = () => {
                 params: {
                     category: searchParams.getAll("category"),
                     brand:searchParams.getAll("brand"),
-                    _sort: "originalPrice",
-                    _orderBy: searchParams.get("orderBy"),
+                    sort: "originalPrice",
+                    orderBy: searchParams.get("orderBy"),
                 }
             }
             dispatch(getProducts(getProductsParams))
@@ -47,7 +47,7 @@ export const Products = () => {
                             <Box key={prod.id}>
                                 <ProductCard
                                     id={prod.id}
-                                    image={prod.img}
+                                    image={prod.image[0]}
                                     desc={prod.description}
                                     brand={prod.brand}
                                     oriPrice={prod.originalPrice}

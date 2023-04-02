@@ -123,8 +123,8 @@ const Filter_Sort = () => {
                  <Checkbox  value="jwellery">
                     Jwellery
                   </Checkbox>
-                  <Checkbox  value="fashion">
-                    Fashion
+                  <Checkbox  value="Evok">
+                    Evok
                   </Checkbox>
                   <Checkbox  value="grocery&decor">
                     Grocery&Decor
