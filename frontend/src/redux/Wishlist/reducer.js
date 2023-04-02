@@ -17,8 +17,8 @@ export const reducer = (state = initialState, {type , payload}) => {
     case ADD_TO_WISHLIST:
       return {...state, wishlist:payload};
     case REMOVE_FROM_WISHLIST:
-      state = state.filter(({ id }) => id !== payload);
-      return {...state};
+     
+      return {...state  , wishlist:[] };
     default:
       return state;
   }

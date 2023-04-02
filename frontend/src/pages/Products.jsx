@@ -46,7 +46,8 @@ export const Products = () => {
                         products?.map((prod) => (
                             <Box key={prod.id}>
                                 <ProductCard
-                                    id={prod.id}
+                                    id={prod._id}
+                                    name={prod.name}
                                     image={prod.image[0]}
                                     desc={prod.description}
                                     brand={prod.brand}

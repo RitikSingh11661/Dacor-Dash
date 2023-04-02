@@ -16,20 +16,37 @@ import {
 import { Link } from "react-router-dom";
 
 import { FcLike } from "react-icons/fc";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import jwtDecode from "jwt-decode";
+import { getWishlist, removeWishlist } from "../../redux/Wishlist/actions";
 
 
-const ProductCard = ({ image, desc, brand, oriPrice, category, disPrice }) => {
+
+const ProductCard = ({
+  id,
+  name,
+  image,
+  desc,
+  brand,
+  oriPrice,
+  category,
+  disPrice,
+}) => {
   const loading = useSelector((store) => store.ProductReducer.loading);
 
   const [show, setShow] = useState(false);
-
+  const dispatch = useDispatch();
   const handleMouseEnter = () => {
     setShow(true);
   };
 
   const handleMouseLeave = () => {
     setShow(false);
+  };
+
+  const handleRemove = () => {
+  const { userId } = jwtDecode(localStorage.getItem("token"));
+   dispatch(removeWishlist(id)).then(() => dispatch(getWishlist()))
   };
   return (
     <div>
@@ -99,6 +116,7 @@ const ProductCard = ({ image, desc, brand, oriPrice, category, disPrice }) => {
                 justifyContent={"center"}
               >
                 <Button
+                  onClick={handleRemove}
                   fontWeight="none"
                   borderRadius="none"
                   color="#fD7745"
@@ -127,10 +145,7 @@ const ProductCard = ({ image, desc, brand, oriPrice, category, disPrice }) => {
               top="10px"
               right="18px"
               pos="absolute"
-            >
-             
-            </HStack>
-            
+            ></HStack>
           </Box>
         </Skeleton>
       </Center>
