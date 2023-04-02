@@ -3,17 +3,9 @@ const { adminModel } = require("../models/admin.model");
 const express = require("express");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const { verifyToken } = require("../middlewares/auth.middleware");
 
 const adminRoutes = express.Router();
-
-adminRoutes.get("/", async (req, res) => {
-    try {
-        const data = await adminModel.find();
-        res.status(200).send({ msg: data, status: "success" });
-    } catch (e) {
-        res.status(400).send({ msg: e.message })
-    }
-})
 
 adminRoutes.post("/add", async (req, res) => {
     const { email } = req.body;
@@ -57,6 +49,17 @@ adminRoutes.post("/login", async (req, res) => {
         }
     } catch (e) {
         res.status(400).send({ msg: e.message });
+    }
+})
+
+// below routes for only admin
+adminRoutes.use(verifyToken);
+adminRoutes.get("/", async (req, res) => {
+    try {
+        const data = await adminModel.find();
+        res.status(200).send({data,status:"success"});
+    } catch (e) {
+        res.status(400).send({ msg: e.message })
     }
 })
 

@@ -34,7 +34,7 @@ const AddAdmins = () => {
         isClosable: true,
       })
     }
-    setForm(initForm)
+    // setForm(initForm)
   }
   return (
     <div>

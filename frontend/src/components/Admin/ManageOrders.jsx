@@ -31,8 +31,9 @@ const ManageOrders = () => {
       <Heading size='md'>Manage Orders</Heading>
       {isLoadingOrders && <CircularProgress isIndeterminate color='green.300' />}
       {isErrorOrders && <h2>Error Occured while getting Orders</h2>}
+      {!isLoadingOrders && orders?.length<1 && <h2>Users did not order anything from our Store</h2>}
         <div>
-          {orders.length > 0 && 
+          {orders?.length > 0 && 
           <TableContainer width={'auto'}>
           <Table variant='striped' colorScheme='teal' size={'sm'}>
             <Thead>

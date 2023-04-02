@@ -1,4 +1,5 @@
 // const { verifyToken } = require("../middlewares/auth.middleware");
+const { verifyToken } = require("../middlewares/auth.middleware");
 const { prodModel } = require("../models/product.model");
 
 const express = require("express");
@@ -66,7 +67,7 @@ prodRoutes.get("/:id", async (req, res) => {
 })
 
 // Below's for admin only
-// prodRoutes.use(verifyToken);
+prodRoutes.use(verifyToken);
 
 prodRoutes.post("/add", async (req, res) => {
     const { name, images, brand, originalPrice, discountPrice, category } = req.body;

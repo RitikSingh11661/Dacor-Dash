@@ -7,15 +7,16 @@ import { FiUserX } from 'react-icons/fi';
 const ManageUsers = () => {
   const { isLoadingUserList, isErrorUserList, users,orders,carts} = useSelector(store => store.AdminReducer);
   let total=0,totalProfit=0,totalCart=0;
+  console.log('orders',orders)
   const dispatch = useDispatch();
   const toast = useToast();
 
   const handleDelete = (user) => {
     try {
-      dispatch(deleteUser(user.userId?user.userId:user.id));
+      dispatch(deleteUser(user._id));
       toast({
         title: 'User Deleted',
-        description: `${user.username?user.username:user.name} has been deleted successfully`,
+        description: `${user.name} has been deleted successfully`,
         status: 'success',
         duration: 2000,
         isClosable: true,
@@ -23,7 +24,7 @@ const ManageUsers = () => {
     } catch (error) {
       toast({
         title: 'Error while deleting',
-        description: `${user.username?user.username:user.name} has not deleted`,
+        description: `${user.name} has not deleted`,
         status: 'error',
         duration: 2000,
         isClosable: true,
@@ -41,7 +42,7 @@ const ManageUsers = () => {
   // console.log('manage uses list page rendering')
  
   const totalArray=[]
-  orders.forEach((order,i)=>{
+  orders?.forEach((order,i)=>{
      if(!totalArray.some(obj=>obj.useremail===order.useremail)){
        const user={id:order.id,userId:order.userId,username:order.username,useremail:order.useremail,orderQuantity:1,totalOrderPrice:order.originalPrice-order.discountPrice};
        totalArray.push(user)
@@ -52,7 +53,7 @@ const ManageUsers = () => {
         })
       }
      total+=order.originalPrice-order.discountPrice;
-    });
+  });
   users.forEach((user)=>{
     if(!totalArray.some(obj=>obj.username===user.name))totalArray.push(user)
   })
@@ -79,7 +80,7 @@ const ManageUsers = () => {
               {totalArray.map((user) => {
                 totalProfit += 100;
                 totalCart+=1;
-                return <Tr key={user.id}>
+                return <Tr key={user._id}>
                   <Td>{user?.username?user.username:user.name}</Td>
                   <Td >{user?.orderQuantity?user.orderQuantity:0}</Td>
                   <Td>{1}</Td>

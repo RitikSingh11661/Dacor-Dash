@@ -62,7 +62,6 @@ const getCategoriesSuccess = (payload) => ({ type: GET_CATEGORIES_SUCCESS, paylo
 const getOrdersRequest = () => ({ type: GET_ORDERS_REQUEST });
 const getOrdersSuccess = (payload) => ({ type: GET_ORDERS_SUCCESS, payload });
 const getOrdersFailure = () => ({ type: GET_ORDERS_FAILURE });
-
 const getCartsSuccess = (payload) => ({ type: GET_CARTS_SUCCESS, payload });
 
 export const getProducts = (dispatch) => {
@@ -117,8 +116,8 @@ export const updateProduct = (product) => async (dispatch) => {
 export const getUsersList = async (dispatch) => {
   dispatch(getUserListRequest());
   try {
-    const { data } = await axios.get("https://universal-mall-api.onrender.com/users");
-    dispatch(getUserListSuccess(data));
+    const { data } = await axios.get("https://talented-teal-hosiery.cyclic.app/user");
+    dispatch(getUserListSuccess(data.msg));
   } catch (error) {
     dispatch(getUserListFailure(error));
   }
@@ -127,9 +126,10 @@ export const getUsersList = async (dispatch) => {
 export const deleteUser = (id) => async (dispatch) => {
   dispatch(deleteUserRequest());
   try {
-    let res = await axios.delete(`https://universal-mall-api.onrender.com/users/${id}`,{
+    let res = await axios.delete(`https://talented-teal-hosiery.cyclic.app/user/delete/${id}`,{
       headers:{token:localStorage.getItem('token')}
     });
+    console.log('res',res)
     dispatch(deleteUserSuccess(id));
     return res;
   } catch (error) {
@@ -137,11 +137,13 @@ export const deleteUser = (id) => async (dispatch) => {
   }
 };
 
-export const getAdminList = async (dispatch) => {
+export const getAdminList = async (dispatch)=>{
   dispatch(getAdminListRequest());
   try {
-    const { data } = await axios.get("https://universal-mall-api.onrender.com/admins");
-    dispatch(getAdminListSuccess(data));
+    const { data } = await axios.get("https://talented-teal-hosiery.cyclic.app/admin",{
+      headers:{token:localStorage.getItem('token')}
+    });
+    dispatch(getAdminListSuccess(data.data));
   } catch (error) {
     dispatch(getAdminListFailure(error));
   }
@@ -150,8 +152,8 @@ export const getAdminList = async (dispatch) => {
 export const addAdmin = (admin) => async (dispatch) => {
   dispatch(addAdminRequest());
   try {
-    let { data } = await axios.post("https://talented-teal-hosiery.cyclic.app/admin/add",JSON.stringify(admin),{
-      headers:{'Content-Type': 'application/json',token:localStorage.getItem('token')}
+    let { data } = await axios.post("https://talented-teal-hosiery.cyclic.app/admin/add",admin,{
+      headers:{token:localStorage.getItem('token')}
     });
     dispatch(addAdminSuccess(data));
     return data;
@@ -163,7 +165,7 @@ export const addAdmin = (admin) => async (dispatch) => {
 export const deleteAdmin = (id) => async (dispatch) => {
   dispatch(deleteAdminRequest());
   try {
-    let { data } = await axios.delete(`https://universal-mall-api.onrender.com/admins/${id}`,{
+    let { data } = await axios.delete(`https://talented-teal-hosiery.cyclic.app/admin/delete/${id}`,{
       headers:{token:localStorage.getItem('token')}
     });
     dispatch(deleteAdminSuccess(id));
@@ -182,6 +184,7 @@ const getAllCategories = async () => {
   });
   return categories;
 };
+
 export const getCategories = async (dispatch) => {
   dispatch(getCategoriesRequest());
   const allCategories = await getAllCategories();
@@ -197,8 +200,10 @@ export const getCategories = async (dispatch) => {
 export const getOrders = async (dispatch) => {
   dispatch(getOrdersRequest());
   try {
-    const { data } = await axios.get("https://universal-mall-api.onrender.com/orders");
-    dispatch(getOrdersSuccess(data));
+    const { data } = await axios.get("https://talented-teal-hosiery.cyclic.app/order/allorders",{
+      headers:{token:localStorage.getItem("token")}
+    });
+    dispatch(getOrdersSuccess(data.data));
   } catch (error) {
     dispatch(getOrdersFailure(error));
   }

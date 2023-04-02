@@ -10,10 +10,10 @@ import AddProducts from './AddProducts';
 import AddAdmins from './AddAdmins';
 import Analyse from './Analyse';
 import logo from '../../assets/Decor Dash_logo.png';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setLogout } from '../../redux/Auth/actions';
-import axios from 'axios';
 import jwtDecode from 'jwt-decode';
+import { getAdminList } from '../../redux/Admin/actions';
 
 const LinkItems = [
     { name: 'Dashboard', compName: 'Dashboard', heading: 'Dashboard', icon: FiHome },
@@ -27,6 +27,7 @@ const LinkItems = [
 
 function SidebarWithHeader({ children }) {
     const dispatch = useDispatch();
+    const { isLoadingAdminList, isErrorAdminList, admins} = useSelector(store => store.AdminReducer);
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [comp, setComp] = useState('Dashboard');
     const [admin, setAdmin] = useState({});
@@ -46,13 +47,12 @@ function SidebarWithHeader({ children }) {
     
     useEffect(() => {
         componentChange(comp)
+        dispatch(getAdminList)
         const decodedToken = jwtDecode(localStorage.getItem('token'));
-        axios.get(`https://talented-teal-hosiery.cyclic.app/admin`).then((res)=>{
-            const detail = res.data?.msg.find(admin=>admin._id==decodedToken.userId);
-            setAdmin(detail)
-        })
+        const detail = admins?.find(admin=>admin._id==decodedToken.userId);
+        setAdmin(detail)
     }, [comp])
-
+    
     const SidebarContent = ({ onClose, ...rest }) => {
         return (
             <Box transition="3s ease" bg={useColorModeValue('white', 'gray.900')} borderRight="1px"
@@ -66,6 +66,7 @@ function SidebarWithHeader({ children }) {
             </Box>
         );
     };
+
 
     return (
         <Box>
@@ -140,9 +141,9 @@ const MobileNav = ({admin, handleLogout,onOpen, ...rest }) => {
                             transition="all 0.3s"
                             _focus={{ boxShadow: 'none' }}>
                             <HStack>
-                                <Avatar size={'sm'} src={admin.image}/>
+                                <Avatar size={'sm'} src={admin?.image}/>
                                 <VStack display={{ base: 'none', md: 'flex' }} alignItems="flex-start" spacing="1px" ml="2">
-                                    <Text fontSize="large" color="gray.600">{admin.name}</Text>
+                                    <Text fontSize="large" color="gray.600">{admin?.name}</Text>
                                 </VStack>
                                 <Box display={{ base: 'none', md: 'flex' }}>
                                     <FiChevronDown />
