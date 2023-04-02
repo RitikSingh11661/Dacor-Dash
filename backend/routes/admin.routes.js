@@ -80,3 +80,24 @@ adminRoutes.patch("/update/:id", async (req, res) => {
 
 
 module.exports = { adminRoutes };
+
+// admin/add
+// {
+//     "name":"admin2",
+//     "email":"admin2@gmail.com",
+//     "password":"admin2",
+//     "image":"image.link",
+//     "contact":738232,
+//     "role":"technical"
+//  }
+
+//admin/login
+// {
+//     "name":"admin2",
+//     "email":"admin2@gmail.com",
+//     "password":"admin2",
+//     "image":"image.link",
+//     "contact":738232,
+//     "role":"technical"
+//  }
+

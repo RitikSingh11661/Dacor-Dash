@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { useRef } from 'react';
 
 const SingleProduct = ({ product }) => {
-  const formRef=useRef(product)
+  const formRef=useRef(product);
   const dispatch = useDispatch();
   const [showEdit, setShowEdit] = useState(false);
   const toast = useToast();
@@ -29,16 +29,17 @@ const SingleProduct = ({ product }) => {
       toast(
         {
           title: 'Product Updated',
-          description: `${formRef.current.description} has been updated successfully.`,
+          description: `${formRef.current.name} has been updated successfully.`,
           status: 'success',
           duration: 3000,
           isClosable: true,
         });
     } catch (error) {
+      console.log('error',error)
       toast(
         {
           title: 'Error white editing',
-          description: `${formRef.current.description} has not edit.`,
+          description: `${formRef.current.name} has not edit.`,
           status: 'success',
           duration: 3000,
           isClosable: true,
@@ -53,7 +54,7 @@ const SingleProduct = ({ product }) => {
         <Heading w="100%" size={'md'} textAlign={'center'} fontWeight="normal">Edit Product</Heading>
         <FormControl mt={'2'}>
           <FormLabel htmlFor="name" fontWeight={'normal'}>Name</FormLabel>
-          <Input id="description" name='description' onChange={formChangeHandler} placeholder={product.description} fontSize={'small'} size={'sm'} />
+          <Input id="name" name='name' onChange={formChangeHandler} placeholder={product.name} fontSize={'small'} size={'sm'} />
         </FormControl>
         <FormControl>
           <FormLabel htmlFor="brand" fontWeight={'normal'}>Brand</FormLabel>
@@ -87,12 +88,13 @@ const SingleProduct = ({ product }) => {
     );
   };
 
-  const handleDelete = () => {
+  const handleDelete =async() => {
     try {
-      dispatch(deleteProduct(product.id));
+      const data=await dispatch(deleteProduct(product._id));;
+      console.log('data',data)
       toast({
         title: 'Product Deleted',
-        description: `${product.description} has been deleted successfully`,
+        description: `${product.name} has been deleted successfully`,
         status: 'success',
         duration: 4000,
         isClosable: true,
@@ -100,7 +102,7 @@ const SingleProduct = ({ product }) => {
     } catch (error) {
       toast({
         title: 'Error while deleting',
-        description: `${product.description} has not deleted`,
+        description: `${product.name} has not deleted`,
         status: 'error',
         duration: 4000,
         isClosable: true,
@@ -150,10 +152,10 @@ const SingleProduct = ({ product }) => {
           pos={'relative'}
           _after={{transition:'all.3sease',content:'""',w:'full',h:'full',pos:'absolute',top:5,left:0,filter:'blur(15px)',zIndex:-1}}
           _groupHover={{_after: {filter: 'blur(20px)'}}}>
-          <Image rounded={'lg'} boxSize={150} objectFit={'cover'} src={product.img} />
+          <Image rounded={'lg'} boxSize={150} objectFit={'cover'} src={product.images?product.images[0]:product.image[0]}/>
         </Box>
         <Stack align={'center'}>
-          <Heading fontSize={'md'} fontFamily={'body'} fontWeight={500}>{product.description}</Heading>
+          <Heading fontSize={'md'} fontFamily={'body'} fontWeight={500}>{product.name}</Heading>
           <Stack direction={'row'} align={'center'}>
             <Text fontWeight={800} fontSize={'md'}>{priceWithString}</Text>
             <Text textDecoration={'line-through'} color={'gray.600'} textDecor='line-through'>₹{product.originalPrice}</Text>
