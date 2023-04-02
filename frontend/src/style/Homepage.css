@@ -56,8 +56,9 @@
 #gridDiv>div:nth-child(3)>*:hover svg {
     fill: #ED7745;
 }
-#gridDiv>div>div{
-    margin:auto;
+
+#gridDiv>div>div {
+    margin: auto;
 }
 
 #scalingSwiper img {
@@ -73,8 +74,24 @@
     padding: 3%;
 }
 
-@media screen, (min-width:"600px") and (max-width:"1000px"){
-    #scalingSwiper{
-        slides-per-view:2;
+#scalingSwiper {
+    width: 0px;
+}
+
+/* @media screen and (min-width:0px) {
+    #scalingSwiper {
+        width: 0px;
     }
 }
+
+@media screen and (min-width: 640px) {
+    #scalingSwiper {
+        width: 600px;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    #scalingSwiper {
+        width: 1000px;
+    }
+} */

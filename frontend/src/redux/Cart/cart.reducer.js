@@ -8,7 +8,7 @@ const initState = {
     totalCart:0
 }
 
-export const cartReducer = (state=initState,{type,payload})=>{
+export const reducer = (state=initState,{type,payload})=>{
     switch(type){
         case CART_LOADING:{
          return {
