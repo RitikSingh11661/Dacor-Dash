@@ -5,7 +5,7 @@ import "../style/Navbar.css";
 // import { useSelector } from "react-redux";
 
 export const Navbar = () => {
-    const isAuth = false;
+    const isAuth = true;
     const handleClick = () => {
 
     }
@@ -16,7 +16,7 @@ export const Navbar = () => {
     }
     return (
         <VStack divider={<StackDivider borderColor='gray.200' />}>
-            <HStack fontSize={{ base: '7px', md: "10px", lg: '15px' }} id="stack1" h={"40px"} p={{ base: "2px 0",md:"2px 0px", lg: "2px 15%" }} align={"center"} justify={"space-between"} w="100%">
+            <HStack fontSize={{ base: '9px', md: "12px", lg: '15px' }} id="stack1" h={"40px"} p={{ base: "2px 0", md: "2px 0px", lg: "2px 15%" }} justify={"space-between"} align={"center"} w="100%">
                 <HStack>
                     <Link>
                         <HStack align="center">
@@ -36,7 +36,7 @@ export const Navbar = () => {
                     <Link>UL Services</Link>
                 </HStack>
             </HStack>
-            <Grid mb={"7px"} alignItems={"center"} p={{ base: "15px 0",md:"15px 0px", lg: "15px 15%" }} gap={"5%"} gridTemplateColumns={"1fr 4fr 1fr"}>
+            <Grid mb={"7px"} alignItems={"center"} p={{ base: "15px 0", md: "15px 0px", lg: "15px 15%" }} gap={"5%"} gridTemplateColumns={{base:"1fr 1.5fr 1fr", md:"1fr 3fr 1fr", lg:"1fr 4fr 1fr"}}>
                 <Link to="/"><Image src="https://i.ibb.co/mtrWJVh/Decor-Dash-logo-cropped.png" alt="https://i.ibb.co/mtrWJVh/Decor-Dash-logo-cropped.png" /></Link>
                 <InputGroup>
                     <Input onKeyDown={handleKeyDown} type={"search"} />
