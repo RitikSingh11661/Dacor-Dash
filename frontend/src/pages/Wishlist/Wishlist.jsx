@@ -31,7 +31,7 @@ const Wishlist = () => {
   return (
     <div>
       <p>
-        <span>My Wishlist</span>
+        <h2 style={{ textAlign: "center", color: "#ED7745" }}>My Wishlist</h2>
       </p>
       <div>
         {/* {data.map((item) => (
