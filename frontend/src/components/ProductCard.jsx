@@ -65,14 +65,14 @@ const ProductCard = ({ id ,name , image, desc, brand, oriPrice, category, disPri
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
-            <Link to={`/product/${id}`}>
+          
               <Image
                 w="304px"
                 height={"300px"}
                 objectFit={"cover"}
                 src={image}
               />
-            </Link>
+          
             <Stack pt="2" spacing="0.5" fontSize="13px">
               <Text
                 color={"#494848"}
@@ -128,13 +128,14 @@ const ProductCard = ({ id ,name , image, desc, brand, oriPrice, category, disPri
                 >
                   ADD TO COMPARE
                 </Button>
-                <Button
+               <Link to={`/product/${id}`}>
+               <Button
                   fontSize="0.7rem"
                   borderRadius="none"
                   colorScheme="orange"
                 >
                   VIEW PRODUCT
-                </Button>
+                </Button></Link>
               </HStack>
             }
             <HStack

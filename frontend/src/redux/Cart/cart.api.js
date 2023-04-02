@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const getCartApi = async ()=>{
     try{
-      let res = await axios.get(`https://talented-teal-hosiery.cyclic.app/cart`,{
+      let res = await axios.get(`${process.env.REACT_APP_API_AI}/cart`,{
         headers:{
           "token":localStorage.getItem("token")
         }
@@ -19,7 +19,7 @@ export const getCartApi = async ()=>{
 
 export const addCartApi = async (payload)=>{
   try{
-    let res = await axios.post(`https://talented-teal-hosiery.cyclic.app/cart/add`,
+    let res = await axios.post(`${process.env.REACT_APP_API_AI}/cart/add`,
     payload,{
       headers:{
         "token":localStorage.getItem("token")
@@ -38,7 +38,7 @@ export const addCartApi = async (payload)=>{
 
 export const deleteCartApi = async (newCart,id)=>{
     try{
-      let res = await axios.delete(`https://universal-mall-api.onrender.com/products/${id}`,{
+      let res = await axios.delete(`${process.env.REACT_APP_API_AI}/cart/${id}`,{
         headers:{
           "token":localStorage.getItem("token")
         }
