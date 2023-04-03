@@ -470,13 +470,7 @@ const Address = () => {
                 display="flex"
                 justifyContent={"space-between"}
               >
-                {/* <Image
-                  // src={img}
-                  alt="Image"
-                  boxSize="90px"
-                  objectFit="cover"
-                /> */}
-                {/* <Text>{name}</Text> */}
+              
               </AccordionPanel>
             </AccordionItem>
             <AccordionItem>

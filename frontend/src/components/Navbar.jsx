@@ -1,12 +1,13 @@
 import { Box, Button, Grid, HStack, Image, Input, InputGroup, InputRightElement, StackDivider, Text, VStack } from "@chakra-ui/react"
-import { Link, useNavigate } from "react-router-dom"
+import { Link, Navigate, useNavigate } from "react-router-dom"
 import { QuestionIcon, Search2Icon } from "@chakra-ui/icons"
 import "../style/Navbar.css";
+import { useSelector } from "react-redux";
 // import { useSelector } from "react-redux";
 
 export const Navbar = () => {
     const navigate = useNavigate();
-    const isAuth = false;
+    const isAuth = useSelector(store => store.AuthReducer.isAuth);
     const handleClick = () => {
 
     }
@@ -55,7 +56,10 @@ export const Navbar = () => {
                                     <Link>Profile</Link>
                                     <Link to="/trackorder">Orders</Link>
                                     <Link>Vouchers</Link>
-                                    <Link>Logout</Link>
+                                    <Text onClick={() => {
+                                        localStorage.setItem("isAuth", JSON.stringify(""));
+                                        localStorage.setItem("token", JSON.stringify(""));
+                                    }}>Logout</Text>
                                 </VStack>
                                 :
                                 <VStack spacing={0}>

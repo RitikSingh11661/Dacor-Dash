@@ -66,7 +66,7 @@ const getCartsSuccess = (payload) => ({ type: GET_CARTS_SUCCESS, payload });
 
 export const getProducts = (dispatch) => {
   dispatch(getProductDataRequest());
-  axios.get(`https://talented-teal-hosiery.cyclic.app/product`)
+  axios.get(`${process.env.REACT_APP_API_AI}/product`)
     .then((res) =>dispatch(getProductDataSuccess(res.data.msg)))
     .catch(()=>dispatch(getProductDataFailure()));
 };
@@ -74,7 +74,7 @@ export const getProducts = (dispatch) => {
 export const addProduct = (product) => async (dispatch) => {
   dispatch(addProductRequest());
   try {
-    const {data} =await axios.post("https://talented-teal-hosiery.cyclic.app/product/add",JSON.stringify(product),{
+    const {data} =await axios.post(`${process.env.REACT_APP_API_AI}/product/add`,JSON.stringify(product),{
       headers:{'Content-Type':'application/json',token:localStorage.getItem('token')}
     });
     dispatch(addProductSuccess(data));
@@ -88,7 +88,7 @@ export const addProduct = (product) => async (dispatch) => {
 export const deleteProduct = (id) => async (dispatch) => {
   dispatch(deleteProductRequest());
   try {
-    const {data}=await axios.delete(`https://talented-teal-hosiery.cyclic.app/product/delete/${id}`,{
+    const {data}=await axios.delete(`${process.env.REACT_APP_API_AI}/product/delete/${id}`,{
       headers:{token:localStorage.getItem('token')}
     });
     dispatch(deleteProductSuccess(id));
@@ -103,7 +103,7 @@ export const updateProduct = (product) => async (dispatch) => {
   console.log('product',product)
   dispatch(updateProductRequest());
   try {
-    const { data } = await axios.patch(`https://talented-teal-hosiery.cyclic.app/product/update/${product._id}`,JSON.stringify(product),{
+    const { data } = await axios.patch(`${process.env.REACT_APP_API_AI}/product/update/${product._id}`,JSON.stringify(product),{
       headers:{'Content-Type':'application/json',token:localStorage.getItem('token')}
     });
     dispatch(updateProductSuccess(product));
@@ -116,7 +116,7 @@ export const updateProduct = (product) => async (dispatch) => {
 export const getUsersList = async (dispatch) => {
   dispatch(getUserListRequest());
   try {
-    const { data } = await axios.get("https://talented-teal-hosiery.cyclic.app/user");
+    const { data } = await axios.get(`${process.env.REACT_APP_API_AI}/user`);
     dispatch(getUserListSuccess(data.msg));
   } catch (error) {
     dispatch(getUserListFailure(error));
@@ -126,7 +126,7 @@ export const getUsersList = async (dispatch) => {
 export const deleteUser = (id) => async (dispatch) => {
   dispatch(deleteUserRequest());
   try {
-    let res = await axios.delete(`https://talented-teal-hosiery.cyclic.app/user/delete/${id}`,{
+    let res = await axios.delete(`${process.env.REACT_APP_API_AI}/user/delete/${id}`,{
       headers:{token:localStorage.getItem('token')}
     });
     console.log('res',res)
@@ -140,7 +140,7 @@ export const deleteUser = (id) => async (dispatch) => {
 export const getAdminList = async (dispatch)=>{
   dispatch(getAdminListRequest());
   try {
-    const { data } = await axios.get("https://talented-teal-hosiery.cyclic.app/admin",{
+    const { data } = await axios.get(`${process.env.REACT_APP_API_AI}/admin`,{
       headers:{token:localStorage.getItem('token')}
     });
     dispatch(getAdminListSuccess(data.data));
@@ -152,7 +152,7 @@ export const getAdminList = async (dispatch)=>{
 export const addAdmin = (admin) => async (dispatch) => {
   dispatch(addAdminRequest());
   try {
-    let { data } = await axios.post("https://talented-teal-hosiery.cyclic.app/admin/add",admin,{
+    let { data } = await axios.post(`${process.env.REACT_APP_API_AI}/admin/add`,admin,{
       headers:{token:localStorage.getItem('token')}
     });
     dispatch(addAdminSuccess(data));
@@ -165,7 +165,7 @@ export const addAdmin = (admin) => async (dispatch) => {
 export const deleteAdmin = (id) => async (dispatch) => {
   dispatch(deleteAdminRequest());
   try {
-    let { data } = await axios.delete(`https://talented-teal-hosiery.cyclic.app/admin/delete/${id}`,{
+    let { data } = await axios.delete(`${process.env.REACT_APP_API_AI}/admin/delete/${id}`,{
       headers:{token:localStorage.getItem('token')}
     });
     dispatch(deleteAdminSuccess(id));
@@ -200,7 +200,7 @@ export const getCategories = async (dispatch) => {
 export const getOrders = async (dispatch) => {
   dispatch(getOrdersRequest());
   try {
-    const { data } = await axios.get("https://talented-teal-hosiery.cyclic.app/order/allorders",{
+    const { data } = await axios.get(`${process.env.REACT_APP_API_AI}/order/allorders`,{
       headers:{token:localStorage.getItem("token")}
     });
     dispatch(getOrdersSuccess(data.data));
