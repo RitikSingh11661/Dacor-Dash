@@ -355,6 +355,6 @@ export const SingleProduct = () => {
                 </Stack>
             </SimpleGrid>
         </Container>
-
+</>
     );
 }
