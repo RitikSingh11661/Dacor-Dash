@@ -8,6 +8,10 @@ import { store } from './redux/store';
 import { Provider } from 'react-redux';
 import { ChakraProvider } from '@chakra-ui/react';
 import { GoogleOAuthProvider } from '@react-oauth/google';
+// import Kommunicate from '@kommunicate/kommunicate-chatbot-plugin';
+
+// const optionalSettings = {"popupWidget":true,"automaticChatOpenOnNavigation":true,"widgetSettings": { "alignment": "right" }}
+// Kommunicate.init('AIzaSyBG3_SOhcCCa5Ej0DknXXFiTRJ6yFtoBwg', {...optionalSettings})
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

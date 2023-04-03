@@ -1,4 +1,5 @@
 import { Allroutes } from './routes/Allroutes';
+// import { ChatBot } from './components/Chatbot';
 
 function App() {
     return (
