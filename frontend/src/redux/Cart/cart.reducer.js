@@ -9,6 +9,7 @@ const initState = {
 }
 
 export const reducer = (state=initState,{type,payload})=>{
+ 
     switch(type){
         case CART_LOADING:{
          return {
@@ -26,8 +27,9 @@ export const reducer = (state=initState,{type,payload})=>{
             }
         }
         case DELETE_CART_SUCCESS:{
+            console.log("cart",payload)
             return {
-                ...state,cart:state.cart.filter((ele)=>{
+                ...state,loading:false,cart:state.cart.filter((ele)=>{
                     return ele._id !==payload._id
                 })
             }

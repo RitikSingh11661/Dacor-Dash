@@ -11,6 +11,7 @@ import { GoLocation } from 'react-icons/go';
 import { AiOutlineDown } from 'react-icons/ai';
 import jwtDecode from "jwt-decode";
 import { addCart } from '../redux/Cart/cart.action';
+import { SubNavbar } from '../components/SubNavbar';
 
 export const SingleProduct = () => {
     const { id } = useParams();
@@ -52,19 +53,25 @@ export const SingleProduct = () => {
     }
 
     return (
-        <Container maxW={"5xl"} >
-            <SimpleGrid
-                columns={{ base: 1, lg: 2 }}
-                spacing={{ base: 8, md: 10 }}
-                py={{ base: 18, md: 24 }}
 
-            >
-                <Flex
-                    direction={"column"}
-                    rowGap="3"
-                    w={{ base: "", md: "", lg: "600px" }}
+      <>
+      <SubNavbar/>
+      <Container maxW={"5xl"} mt={{base:"",md:"-2rem",lg:"-4rem"}}>
+        <SimpleGrid
+          columns={{ base: 1, lg: 2 }}
+          spacing={{ base: 8, md: 10 }}
+          py={{ base: 18, md: 24 }}
+        
+        >
+          <Flex
+            direction={"column"}
+            rowGap="3"
+            w={{ base: "", md: "", lg: "600px" }}
+          
+          >
 
-                >
+
+       
                     <Heading fontSize="1.5rem" color="#2f4858">
                         {name}
                     </Heading>
@@ -245,6 +252,7 @@ export const SingleProduct = () => {
                             * All discounts are dynamic and can change at any time.
                         </Text>
                     </VStack>
+
                     <HStack p="1.5rem" justifyContent="space-around">
                         <Text color={"#969696"} textDecoration="line-through">
                             MRP₹{originalPrice}
@@ -347,5 +355,6 @@ export const SingleProduct = () => {
                 </Stack>
             </SimpleGrid>
         </Container>
+
     );
 }

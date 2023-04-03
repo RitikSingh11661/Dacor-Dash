@@ -25,7 +25,7 @@ import {RxCross2} from "react-icons/rx"
 import CartAccordion from '../components/CartAccordion';
 import OrderSummary from '../components/OrderSummary';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteCart, getCart } from '../redux/Cart/cart.action';
+import { deleteCart, getCart, updateCart } from '../redux/Cart/cart.action';
 import EmptyCart from '../components/EmptyCart';
 import Stepper from '../components/Stepper';
 
@@ -36,7 +36,8 @@ export const Cart = () => {
    const initSum = 0;
    const toast = useToast();
    let sum;
-
+   const [qnty,setQuantity] = useState(1)
+   console.log(qnty)
    if(cartData.length>0){
     sum = cartData?.reduce((acc,ele)=>(
       acc+ele.originalPrice*ele.quantity,initSum
@@ -73,8 +74,8 @@ export const Cart = () => {
     }
    };
 
-   const deleteHandler = ()=>{
-    dispatch(deleteCart());
+   const deleteHandler = (id)=>{
+    dispatch(deleteCart(id));
     toast({
       title: "Deleted Successfully",
       description: "Product deleted from cart",
@@ -84,6 +85,17 @@ export const Cart = () => {
       duration: 3000,
       isClosable: true,
     });
+   
+   };
+
+   const updateQuantity=(id)=>{
+      let newCart = cartData?.map((ele) => {
+        return ele._id === id ? { ...ele, quantity:qnty } : ele;
+      });
+     
+        dispatch(updateCart(newCart,id));
+    
+   
    }
 
    useEffect(() => {
@@ -208,20 +220,20 @@ export const Cart = () => {
                     <Text fontSize="14px"  color="#000000">By 5th Apr, 2023</Text>
                 
                     <Box ml="50px">
-                    <Select placeholder="Q">
-                          <option value="1">1</option>
-                          <option value="2">2</option>
-                          <option value="3">3</option>
-                          <option value="4">4</option>
-                          <option value="5">5</option>
-                          <option value="6">6</option>
-                          <option value="7">7</option>
-                          <option value="8">8</option>
-                          <option value="9">9</option>
+                    <Select placeholder="Q" value={qnty} onChange={(e)=>setQuantity(Number(e.target.value))}>
+                          <option value="1" onClick={()=>updateQuantity(el._id)}>1</option>
+                          <option value="2" onClick={()=>updateQuantity(el._id)}>2</option>
+                          <option value="3" onClick={()=>updateQuantity(el._id)}>3</option>
+                          <option value="4" onClick={()=>updateQuantity(el._id)}>4</option>
+                          <option value="5" onClick={()=>updateQuantity(el._id)}>5</option>
+                          <option value="6" onClick={()=>updateQuantity(el._id)}>6</option>
+                          <option value="7" onClick={()=>updateQuantity(el._id)}>7</option>
+                          <option value="8" onClick={()=>updateQuantity(el._id)}>8</option>
+                          <option value="9" onClick={()=>updateQuantity(el._id)}>9</option>
                         </Select>
                       
                     </Box >
-                       <Stack border="1px solid red" justifyContent="flex-end" >
+                       <Stack justifyContent="flex-end" >
                        <HStack>
                        <VStack  >
                         <Text color={"#999999"} textDecoration="line-through">₹{el.originalPrice}</Text>
@@ -254,8 +266,11 @@ export const Cart = () => {
           w={{ md: "50%" }}
           h={{ md: "25rem" }}
         >
-          <CartAccordion />
-          <OrderSummary/>
+          <CartAccordion availCoupon={availCoupon}/>
+          <OrderSummary 
+          totalItem={cartData?.length}
+          sum={sum}
+          couponDiscount={couponDiscount}/>
         </Box>
       </HStack></>
             :<EmptyCart/>

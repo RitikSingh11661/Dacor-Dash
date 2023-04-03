@@ -52,21 +52,27 @@ const getCart = ()=>async(dispatch)=>{
     }
 }
 
-const deleteCart = ()=>async(dispatch)=>{
+const deleteCart = (id)=>async(dispatch)=>{
     dispatch(cartLoading());
     try{
-        let res = await deleteCartApi();
-        dispatch(getCartSuccess(res))
+         await deleteCartApi(id);
+        
+         let res = await getCartApi();
+         if(res){
+             dispatch(deleteCartSuccess(res))
+             dispatch(getCartSuccess(res))
+         }
     }
     catch(e){
      dispatch(cartError())
     }
+
 };
 
-const updateCart = () => async(dispatch)=>{
+const updateCart = (newCart,id) => async(dispatch)=>{
     dispatch(cartLoading());
     try{
-      let res = await updateCartApi();
+      let res = await updateCartApi(newCart,id);
       dispatch(updateCartSuccess(res))
     }
     catch(e){
