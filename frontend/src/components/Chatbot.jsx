@@ -1,25 +1,15 @@
 import React, { useEffect } from 'react';
 
-export const Chatbot = () => {
+export const  ChatBot= () => {
   useEffect(() => {
-    window.dfMessenger = {
-      sendText: function (text) {
-        // Send user input to chatbot
-        console.log(text);
-      },
-    };
-    loadChatbot();
+    (function(d, m){
+      var kommunicateSettings = {"appId":"AIzaSyBG3_SOhcCCa5Ej0DknXXFiTRJ6yFtoBwg","popupWidget":true,"automaticChatOpenOnNavigation":true};
+      var s = document.createElement("script"); s.type = "text/javascript"; s.async = true;
+      s.src = "https://widget.kommunicate.io/v2/kommunicate.app";
+      var h = document.getElementsByTagName("head")[0]; h.appendChild(s);
+      window.kommunicate = m; m._globals = kommunicateSettings;
+    })(document, window.kommunicate || {});
   }, []);
 
-  const loadChatbot = () => {
-    // Load the chatbot widget
-    window.dfMessengerSettings = {
-      projectId: 'decor-dash',
-      accessToken: '<your access token>',
-      chatTitle: 'Chat with our support',
-    };
-    window.dfMessenger.init();
-  };
-
-  return <div id="dialogflow-chatbot" />;
+  return <div></div>;
 };
