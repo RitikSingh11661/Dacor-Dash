@@ -39,7 +39,8 @@ const OrderSuccessfull = () => {
           className={styles.bookbtn3}
           onClick={handlePay}
           fontSize="larger"
-          padding={"15px"}
+            padding={"50px"}
+           
         >
           {!isButLoading && `Enjoy Your order!`}
           {isButLoading && (

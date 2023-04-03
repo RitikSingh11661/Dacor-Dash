@@ -57,7 +57,7 @@ const Payment = () => {
     <div>
       <Stepper />
       <div id={styles.main}>
-        {address?.length > 0 ? (
+        
           <div id={styles.first}>
             {address.map((ele) => {
               return (
@@ -67,19 +67,7 @@ const Payment = () => {
               );
             })}
           </div>
-        ) : (
-          <p
-            style={{
-              textAlign: "center",
-              fontSize: "20px",
-              fontWeight: "bold",
-              color: "#ED7745",
-             
-            }}
-          >
-            There is no Address
-          </p>
-        )}
+        
 
         <div id={styles.method}>
           <Tabs
