@@ -11,6 +11,7 @@ import { GoLocation } from 'react-icons/go';
 import {AiOutlineDown } from 'react-icons/ai';
 import jwtDecode from "jwt-decode";
 import { addCart } from '../redux/Cart/cart.action';
+import { SubNavbar } from '../components/SubNavbar';
 
 export const SingleProduct = () => {
     const {id} =useParams();
@@ -48,7 +49,9 @@ export const SingleProduct = () => {
     }
 
     return (
-      <Container maxW={"5xl"} >
+      <>
+      <SubNavbar/>
+      <Container maxW={"5xl"} mt={{base:"",md:"-2rem",lg:"-4rem"}}>
         <SimpleGrid
           columns={{ base: 1, lg: 2 }}
           spacing={{ base: 8, md: 10 }}
@@ -66,7 +69,7 @@ export const SingleProduct = () => {
             </Heading>
             <HStack>
               <Text>{brand}</Text>
-              <Badge borderRadius="30px">Best Seller</Badge>
+              <Badge borderRadius="30px" p="0.5rem">Best Seller</Badge>
             </HStack>
             <Image
               rounded={"md"}
@@ -343,5 +346,6 @@ export const SingleProduct = () => {
           </Stack>
         </SimpleGrid>
       </Container>
+    </>
     );
 }

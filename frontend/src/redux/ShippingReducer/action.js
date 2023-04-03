@@ -3,7 +3,6 @@ import { POST_FAILURE } from "../ShippingReducer/actiontype";
 import {
   DELETE_SUCCESS,
   GET_ADDRESS_SUCCESS,
-  PATCH_SUCCESS,
   POST_ADDRESS_SUCCESS,
   POST_REQUEST,
 } from "./actiontype";
@@ -55,7 +54,7 @@ export const getRequestAddress = () => (dispatch) => {
 export const deletedataAdd = (_id) => (dispatch) => {
   dispatch(getpostRequest());
   return axios
-    .delete(`${process.env.REACT_APP_API_AI}/address/delete/${id}`)
+    .delete(`${process.env.REACT_APP_API_AI}/address/delete/${_id}`)
     .then((res) => {
       console.log(res.data);
       dispatch(deldatasuccess());
