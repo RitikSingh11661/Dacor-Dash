@@ -9,7 +9,7 @@ This is an e-commerce website for furniture, where users can buy different types
 
 
 <p id="description">DECOR DASH -This is an e-commerce website for furniture, where users can buy different types of furniture. The website is built using React.js, Redux, Node.js, Express and MongoDB.
-<br><br><b>This is a collaborative project of  members</b><br><br>- Ritik (Team Lead)<br>- Riya <br>- Himanshu Tyagi<br>- Ankesh Chopde</p>
+<br><br><b>This is a collaborative project of  members</b><br><br>- Ritik (Team Lead)<br>- Riya Shrivastava <br>- Himanshu Tyagi<br>- Ankesh Chopde</p>
 
 Features:-
 User authentication using Google and normal authentication.
