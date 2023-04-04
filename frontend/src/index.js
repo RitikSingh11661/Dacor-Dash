@@ -11,7 +11,7 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 // import Kommunicate from '@kommunicate/kommunicate-chatbot-plugin';
 
 // const optionalSettings = {"popupWidget":true,"automaticChatOpenOnNavigation":true,"widgetSettings": { "alignment": "right" }}
-// Kommunicate.init('AIzaSyBG3_SOhcCCa5Ej0DknXXFiTRJ6yFtoBwg', {...optionalSettings})
+// Kommunicate.init(process.env.REACT_APP_DECOR_DEASH_API, {...optionalSettings})
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
