@@ -36,9 +36,9 @@ export const addCartApi = async (payload)=>{
 };
 
 
-export const deleteCartApi = async (newCart,id)=>{
+export const deleteCartApi = async (id)=>{
     try{
-      let res = await axios.delete(`${process.env.REACT_APP_API_AI}/cart/${id}`,{
+      let res = await axios.delete(`${process.env.REACT_APP_API_AI}/cart/delete/${id}`,{
         headers:{
           "token":localStorage.getItem("token")
         }
@@ -53,7 +53,7 @@ export const deleteCartApi = async (newCart,id)=>{
 
 export const updateCartApi = async (newCart,id)=>{
     try{
-      let res = await axios.patch(`https://talented-teal-hosiery.cyclic.app/cart/update/${id}`,
+      let res = await axios.patch(`${process.env.REACT_APP_API_AI}/cart/update/${id}`,
         newCart,
         {
           headers:{

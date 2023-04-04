@@ -43,7 +43,7 @@ const Wishlist = () => {
         </h1>
       </p>
 
-      {wishlist?.length > 0 ? (
+     
         <div>
           <Grid templateColumns={"repeat(3, 1fr)"} w="70%" m="auto">
             {wishlist?.map((item) => {
@@ -55,13 +55,7 @@ const Wishlist = () => {
             })}
           </Grid>
         </div>
-      ) : (
-        <p
-          style={{ textAlign: "center", fontSize: "20px", fontWeight: "bold" }}
-        >
-          Your wishlist is empty.
-        </p>
-      )}
+      
     </div>
   );
 };

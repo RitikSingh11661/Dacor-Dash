@@ -1,4 +1,4 @@
-import { Button, Spinner, VStack } from "@chakra-ui/react";
+import { Spinner, VStack } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./Payment/Payment.module.css";
@@ -39,7 +39,8 @@ const OrderSuccessfull = () => {
           className={styles.bookbtn3}
           onClick={handlePay}
           fontSize="larger"
-          padding={"15px"}
+            padding={"50px"}
+           
         >
           {!isButLoading && `Enjoy Your order!`}
           {isButLoading && (
